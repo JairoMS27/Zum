@@ -1,0 +1,119 @@
+<!-- Sección 1: Inicio -->
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img
+        src="../../assets/img/logos/logoCompleto.svg"
+        alt="Zuum Logo"
+        style="max-width: 150px"
+      />
+      <h1 class="title is-size-1 has-text-white">Encuentra tu pareja ideal</h1>
+      <div class="buttons is-flex is-justify-content-center">
+        <a
+          class="button is-rounded is-primary is-size-5"
+          style="background-color: #3498db; color: #fff"
+          routerLink="/login"
+          >Iniciar Sesión</a
+        >
+        <a
+          class="button is-rounded is-info is-size-5"
+          style="background-color: #2ecc71; color: #fff"
+          routerLink="/registro"
+          >Registro</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección 2: Tarjeta de persona -->
+<section class="card-section">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <!-- Aquí va tu tarjeta con nombre, edad, foto, descripción -->
+        <div class="card">
+          <div class="card-content">
+            <div class="cara cara-delantera">
+              <!-- Imagen del Perfil -->
+              <img
+                class="imagen-fondo"
+                src="../../assets/img/imaxesPerfil/18.webp"
+                alt="Imagen de Fondo"
+              />
+              <!-- Boton para girar la tarjeta -->
+
+              <!-- Informacion del usuario -->
+              <div class="info-perfil">
+                <h2 class="title is-4">
+                  <!-- Verifica que sea Premium para poner corona -->
+                  <span class="icon">
+                    <i class="fas fa-crown" style="color: #ffd43b"></i>
+                  </span>
+                  <!-- Verifica que tenga el nombre de color para cambiarlo, sino es blanco -->
+                  <span class="has-text-gray"> Carla Rodriguez</span>
+                  <!-- Edad -->
+                  <span class="subtitle is-6 has-text-gray"> 27</span>
+                </h2>
+                <!-- Ciudad -->
+                <p class="subtitle is-6 mt-1 has-text-gray">
+                  Santiago de Compostela
+                </p>
+                <!-- Descripcion Corta -->
+                <p>Soy Aventurera y con ganas de conocer gente nueva!</p>
+                <!-- Etiquetas -->
+                <div class="etiquetas">
+                  <span class="tag is-info etiqueta">PC</span>
+                  <!-- Agrega más etiquetas según sea necesario -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <!-- Texto explicativo a los lados -->
+        <p class="is-size-5">
+          ¡Bienvenido a Zuum, el lugar donde los corazones encuentran su
+          destino! Explora perfiles fascinantes, conecta con personas
+          interesantes y descubre la chispa que cambiará tu vida. En Zuum,
+          creemos en el poder del amor y estamos aquí para ayudarte a encontrar
+          a tu media vida.
+        </p>
+        <p class="is-size-5">
+          Explora la diversidad de perfiles, conoce personas con intereses
+          similares y deja que la magia del amor florezca. En Zuum, cada
+          conexión es una historia por escribir, y tu próxima aventura romántica
+          podría estar a solo un clic de distancia.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección 3: Plan Premium -->
+<section
+  class="premium-section"
+  style="background: linear-gradient(to right, #3498db, #9b59b6)"
+>
+  <h1 class="title has-text-white">Ofrecemos ventajas exclusivas</h1>
+  <div class="container">
+    <div class="contenedorSuscripcion suscripcionPremium">
+      <h2 class="title is-4 has-text-white">Premium</h2>
+      <p class="suscripcionPrecio has-text-white">$12.99/mes</p>
+      <ul class="suscripcionCaracteristicas">
+        <li>Pase de Batalla Incluido</li>
+        <li>5 SuperZuums de Regalo cada Mes</li>
+        <li>Descuentos exclusivos en la Tienda</li>
+        <li>Corona Premium</li>
+        <li>Personalizar Color del Nombre</li>
+        <li>Soporte Prioritario</li>
+      </ul>
+      <a class="button is-fullwidth is-primary" routerLink="/login"
+        >Aprende mas...</a
+      >
+    </div>
+  </div>
+</section>
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

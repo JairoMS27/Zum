@@ -1,0 +1,126 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<!-- Añadir el componente mensajes -->
+<app-mensajes [mostrarMenu]="mostrarMenu"></app-mensajes>
+
+<!-- Banner -->
+<section class="hero is-primary is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Tienda</h1>
+      <h2 class="subtitle">Descubre nuestras ofertas exclusivas</h2>
+    </div>
+  </div>
+</section>
+
+<!-- Productos - Marcos -->
+<section class="section">
+  <div class="container">
+    <h3 class="title is-3">Marcos</h3>
+    <div class="columns">
+      <!-- Producto -->
+      <div class="column is-one-quarter" *ngFor="let producto of cosmeticos">
+        <div
+          class="card"
+          (click)="
+            abrirModal(
+              producto.nombre,
+              producto.precio.toString(),
+              producto.imagen,
+              producto.descripcion
+            )
+          "
+        >
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4">{{ producto.nombre }}</p>
+            <p class="subtitle is-6">{{ producto.precio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SuperZuums -->
+<section class="section">
+  <div class="container">
+    <h3 class="title is-3">SuperZuums</h3>
+    <div class="columns">
+      <!-- SuperZuum -->
+      <div class="column is-one-quarter" *ngFor="let producto of superZuums">
+        <div
+          class="card"
+          (click)="
+            abrirModal(
+              producto.nombre,
+              producto.precio.toString(),
+              producto.imagen,
+              producto.descripcion
+            )
+          "
+        >
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4">{{ producto.nombre }}</p>
+            <p class="subtitle is-6">{{ producto.precio }}€</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" [class.is-active]="modalAbierto">
+  <div class="modal-background" (click)="cerrarModal()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <div class="columns">
+        <div class="column is-one-third">
+          <img
+            [src]="productoSeleccionado.imagen"
+            alt="{{ productoSeleccionado.nombre }}"
+          />
+        </div>
+        <div class="column">
+          <h1 class="title">{{ productoSeleccionado.nombre }}</h1>
+          <p>{{ productoSeleccionado.descripcion }}</p>
+          <p>{{ productoSeleccionado.precio }}€</p>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <label>Número de tarjeta:</label>
+          <input class="input" type="text" placeholder="Número de tarjeta" />
+          <label>Fecha de vencimiento:</label>
+          <input class="input" type="text" placeholder="MM/AA" />
+          <label>Código de seguridad:</label>
+          <input class="input" type="text" placeholder="CVC" />
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <button class="button is-primary">Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="cerrarModal()"
+  ></button>
+</div>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

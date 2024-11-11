@@ -1,0 +1,276 @@
+/* Estilos para el Contenedor Principal */
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  background: whitesmoke;
+}
+
+.tarjeta-zuum {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  height: 600px;
+  perspective: 1000px;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* .tarjeta-zuum::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 20px solid transparent;
+  border-image: url("../../assets/img/marcos/1.png") 25% round;
+  border-image-outset: 20px; /* Aumentado a 10px 
+  overflow: hidden;
+  border-radius: 8px;
+}*/
+
+.boton-recarga {
+  position: relative;
+  z-index: 10;
+}
+
+/* Estilos Principal de las Caras */
+.cara {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: transform 1s;
+}
+
+/* Estilos para la Cara Trasera */
+.cara-trasera {
+  transform: rotateY(180deg); /* Rotacion para cuando le das al boton */
+}
+
+/* Estilos para la Cara Delantera */
+.tarjeta-zuum.girada .cara-delantera {
+  transform: rotateY(180deg); /* Rotacion para cuando le das al boton */
+}
+
+.tarjeta-zuum.girada .cara-trasera {
+  transform: rotateY(0deg);
+}
+
+/* Estilos para la Imagen de Fondo */
+.imagen-fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilos para la Información del Perfil */
+.info-perfil {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.info-perfil h2,
+.info-perfil p {
+  margin-bottom: 10px;
+}
+
+/* Estilos para el contenedor de las Etiquetas */
+.etiquetas {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Estilos para cada etiqueta */
+.etiqueta {
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+/* Estilos para el boton de girar */
+.boton-recarga {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para el icono de girar */
+.circulo-icono {
+  width: 30px;
+  height: 30px;
+  background-color: #3273dc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el icono del boton girar */
+.icono-girar {
+  font-size: 18px;
+  color: #fff;
+}
+
+/* Estilos para el Contenedor de los Botones */
+.contenedor-botones {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin-top: 20px;
+}
+
+/* Estilos para los Botones */
+.boton {
+  font-size: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 8px;
+  transition: transform 0.3s ease-in-out; /* Añade una transición suave */
+}
+
+/* Estilos para el Boton Rechazar */
+.boton-rechazar {
+  color: #f05252;
+  background-color: #fff;
+  border: 1px solid #f05252;
+  transition: transform 0.3s ease-in-out; /* Añade una transición suave */
+}
+
+/* Estilos para el Boton Super Zuum */
+.boton-super-zuum {
+  color: #9911bb;
+  background-color: #fff;
+  border: 1px solid #9911bb;
+  transition: transform 0.3s ease-in-out; /* Añade una transición suave */
+}
+
+/* Estilos para el Boton Me Gusta */
+.boton-me-gusta {
+  color: #28a745;
+  background-color: #fff;
+  border: 1px solid #28a745;
+  transition: transform 0.3s ease-in-out; /* Añade una transición suave */
+}
+
+/* Estilos adicionales para la tarjeta de match y el texto */
+.tarjeta-alta {
+  width: 600px;
+  height: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Metropolis", sans-serif; /* Utiliza la fuente Metropolis */
+  color: #fff;
+  background-image: url("../../assets/img/imaxesPerfil/1.webp");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contenido-tarjeta {
+  opacity: 0; /* Inicialmente oculta el contenido */
+  animation: aparecerDesdeArriba 1s ease-in-out forwards; /* Aplica la animación aparecerDesdeArriba */
+}
+
+@keyframes aparecerDesdeArriba {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* Desplazamiento inicial hacia arriba */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(
+      0
+    ); /* Desplazamiento final, sin cambios en la posición vertical */
+  }
+}
+
+.texto-pequeno {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.texto-grande {
+  font-size: 46px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Estilos adicionales para el contenedor del input */
+.contenedor-input {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Estilos adicionales para el input de texto */
+.entrada-mensaje {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 10px;
+  color: #000;
+  font-size: 16px;
+  background-color: #fff;
+  ::placeholder {
+    color: #999;
+    opacity: 1;
+  }
+}
+
+/* Estilos adicionales para el botón de enviar */
+.boton-enviar {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #000;
+  font-size: 20px;
+  z-index: 1;
+  background: transparent; /* Hace que el fondo del botón sea transparente */
+  border: none; /* Elimina el borde del botón */
+  outline: none; /* Elimina el contorno que aparece cuando el botón está enfocado */
+  box-shadow: none; /* Elimina cualquier sombra del botón */
+}
+
+/* Estilos adicionales para el botón de seguir desplazando */
+.boton-seguir {
+  margin-top: auto;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}

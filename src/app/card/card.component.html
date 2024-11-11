@@ -1,0 +1,262 @@
+<div class="contenedor">
+  <!-- Tarjetas de los perfiles -->
+  <ng-container *ngIf="!esMatch">
+    <div
+      class="tarjeta-zuum"
+      [class.girada]="estaGirada"
+      [class]="deslizarDireccion"
+      [@deslizar]="deslizarDireccion"
+      *ngIf="tarjetaActual | async as tarjeta"
+    >
+      <!-- Cara delantera de la Tarjeta -->
+      <div class="cara cara-delantera">
+        <!-- Imagen del Perfil -->
+        <img
+          class="imagen-fondo"
+          [src]="tarjeta.imagenURL"
+          alt="Imagen de Fondo"
+        />
+        <!-- Boton para girar la tarjeta -->
+        <button class="boton-recarga" (click)="girarTarjeta()">
+          <div class="circulo-icono">
+            <i class="fas fa-redo-alt icono-girar"></i>
+          </div>
+        </button>
+        <!-- Informacion del usuario -->
+        <div class="info-perfil">
+          <h2 class="title is-4">
+            <!-- Verifica que sea Premium para poner corona -->
+            <span class="icon" *ngIf="tarjeta.premium">
+              <i class="fas fa-crown" style="color: #ffd43b"></i>
+            </span>
+            <!-- Verifica que tenga el nombre de color para cambiarlo, sino es blanco -->
+            <span
+              [ngStyle]="{
+                color: tarjeta.nombreColor ? tarjeta.nombreColor : 'white'
+              }"
+            >
+              {{ tarjeta.nombre }}
+            </span>
+            <!-- Edad -->
+            <span class="subtitle is-6 has-text-white">{{ tarjeta.edad }}</span>
+          </h2>
+          <!-- Ciudad -->
+          <p class="subtitle is-6 mt-1 has-text-white">
+            {{ tarjeta.ubicacion }}
+          </p>
+          <!-- Descripcion Corta -->
+          <p>
+            {{ tarjeta.descripcion }}
+          </p>
+          <!-- Etiquetas -->
+          <div class="etiquetas">
+            <span
+              class="tag is-info etiqueta"
+              *ngFor="let etiqueta of tarjeta.etiquetas"
+              >{{ etiqueta }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Cara Trasera -->
+      <div class="cara cara-trasera">
+        <button class="boton-recarga m-3" (click)="girarTarjeta()">
+          <div class="circulo-icono">
+            <i class="fas fa-redo-alt icono-girar"></i>
+          </div>
+        </button>
+
+        <!-- Contenedor de Sobre Mí -->
+        <div class="card m-3">
+          <header class="card-header">
+            <p class="card-header-title">Sobre mí</p>
+          </header>
+          <div class="card-content">
+            <div class="content">{{ tarjeta.sobreMi }}</div>
+          </div>
+        </div>
+
+        <!-- Contenedor de Juegos Favoritos -->
+        <div class="card m-3">
+          <header class="card-header">
+            <p class="card-header-title">Juegos favoritos</p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <!-- Bucle para los juegos Favoritos -->
+              <span
+                *ngFor="let juego of tarjeta.juegosFavoritos; let i = index"
+              >
+                {{ juego
+                }}{{ i < tarjeta.juegosFavoritos.length - 1 ? ", " : "" }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenedor de Conexiones del usuario -->
+        <div class="card m-3">
+          <header class="card-header">
+            <p class="card-header-title">Conexiones</p>
+          </header>
+          <div class="card-content has-text-centered">
+            <div class="panel">
+              <!-- Discord -->
+              <div class="panel-block">
+                <div class="content">
+                  <span class="icon">
+                    <i class="fab fa-discord" style="color: #5865f2"></i>
+                  </span>
+                  {{ tarjeta.discord }}
+                </div>
+              </div>
+              <!-- Steam -->
+              <div class="panel-block">
+                <div class="content">
+                  <span class="icon">
+                    <i class="fab fa-steam" style="color: #2a475e"></i>
+                  </span>
+                  {{ tarjeta.steam }}
+                </div>
+              </div>
+              <!-- Xbox -->
+              <div class="panel-block">
+                <div class="content">
+                  <span class="icon">
+                    <i class="fab fa-xbox" style="color: #107c10"></i>
+                  </span>
+                  {{ tarjeta.xbox }}
+                </div>
+              </div>
+              <!-- Playstation -->
+              <div class="panel-block">
+                <div class="content">
+                  <span class="icon">
+                    <i class="fab fa-playstation" style="color: #00439c"></i>
+                  </span>
+                  {{ tarjeta.playstation }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor de la tarjeta para cuando no hay mas perfiles que mostrar -->
+    <div class="card m-3" *ngIf="(tarjetaActual | async) === null">
+      <div class="card-content">
+        <div class="content">
+          <p class="title is-4">¡No hay más perfiles disponibles!</p>
+          <p class="subtitle is-6">
+            Vuelve más tarde para ver nuevos perfiles.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor de botones, si no hay mas perfiles se oculta con el ngIf -->
+    <div class="contenedor-botones" *ngIf="tarjetaActual | async">
+      <button class="boton boton-rechazar" (click)="deslizarIzquierda()">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="boton boton-super-zuum" (click)="superZuum()">
+        <i class="fas fa-star"></i>
+      </button>
+      <button class="boton boton-me-gusta" (click)="deslizarDerecha()">
+        <i class="fas fa-heart"></i>
+      </button>
+    </div>
+  </ng-container>
+  <div
+    class="card tarjeta-alta"
+    *ngIf="esMatch"
+    [style.background-image]="'url(' + imagenMatch + ')'"
+  >
+    <div class="contenido-tarjeta">
+      <!-- Contenido de la tarjeta iría aquí -->
+      <div class="texto-pequeno">Es un</div>
+      <div class="texto-grande">ZUMBIDOOO</div>
+      <!-- Contenedor del input y botón -->
+      <div class="contenedor-input">
+        <!-- Input de texto para el mensaje -->
+        <input
+          type="text"
+          class="entrada-mensaje"
+          placeholder="Dile algo..."
+          [(ngModel)]="mensaje"
+        />
+        <!-- Botón de enviar -->
+        <button class="boton-enviar" (click)="enviarMensaje()">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+      <!-- Botón de seguir desplazando -->
+      <button class="button boton-seguir" (click)="seguirDescubriendo()">
+        Seguir descubriendo
+      </button>
+    </div>
+  </div>
+  <div class="modal" #modalSinLikes>
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">¡No tienes más likes!</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              ¡No tienes más likes! Puedes seguir descubriendo perfiles o
+              suscribirte.
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <button class="card-footer-item" (click)="cerrarModalSinLikes()">
+            Volver
+          </button>
+          <button class="card-footer-item" routerLink="/premium">
+            Suscribirme
+          </button>
+        </footer>
+      </div>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="cerrarModalSinLikes()"
+    ></button>
+  </div>
+  <div class="modal" #modalSinSuperZuums>
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">¡No tienes más superZuums!</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              ¡No tienes SuperZuums! Puedes seguir descubriendo perfiles o
+              comprar más SuperZuums.
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <button class="card-footer-item" (click)="cerrarModalSinSuperZuums()">
+            Volver
+          </button>
+          <button class="card-footer-item" routerLink="/tienda">
+            Comprar SuperZuums
+          </button>
+        </footer>
+      </div>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="cerrarModalSinSuperZuums()"
+    ></button>
+  </div>
+</div>

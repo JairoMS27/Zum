@@ -1,0 +1,104 @@
+/* Ajustes para el fondo Animado */
+.fondoAnimado {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #ff8a00, #e52e71, #3494e6);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s infinite;
+}
+
+/* Crea la animacion para el fondo */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Contenedor para el login */
+.contenedor-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Contenedor para el logo */
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Ajustes de la imagen */
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+/* Contenedor Formulario */
+.grupo-formulario {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.grupo-formulario label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.grupo-formulario input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Boton de enviar */
+.boton-enviar {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: #ffffff;
+  background: linear-gradient(
+    to right,
+    #07d7fe,
+    #f607d5
+  ); /* Degradado de morado a azul */
+  cursor: pointer;
+  transition: background 0.5s ease; /* Transición suave al pasar el ratón */
+}
+
+/* Degradado para el boton cuando pasas por encima */
+.boton-enviar:hover {
+  background: linear-gradient(
+    to right,
+    #3498db,
+    #8e44ad
+  ); /* Cambio en el degradado al pasar el ratón */
+}

@@ -1,0 +1,24 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<!-- Añadir el componente mensajes -->
+<app-mensajes [mostrarMenu]="mostrarMenu"></app-mensajes>
+
+<section class="hero is-fullheight is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half center-card">
+          <div class="card">
+            <div class="card-content">
+              <p class="title has-text-centered">Próximamente</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

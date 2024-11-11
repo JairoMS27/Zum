@@ -1,0 +1,70 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/portada">
+      <img src="../../assets/img/logos/logoIcono.svg" width="112" height="28" />
+    </a>
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      (click)="alternarMenu()"
+      data-target="navbarBasicExample"
+      [class.is-active]="estaMenuAbierto"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div
+    id="navbarBasicExample"
+    class="navbar-menu"
+    [class.is-active]="estaMenuAbierto"
+  >
+    <div class="navbar-item is-flex custom-navbar-tabs is-centered">
+      <div class="tabs is-centered">
+        <ul class="ml-7">
+          <li><a routerLink="/portada">Inicio</a></li>
+          <li>
+            <a routerLink="/temporada" class="has-text-centered">Temporada</a>
+          </li>
+          <li>
+            <a class="premium has-text-centered" routerLink="/premium"
+              >Premium</a
+            >
+          </li>
+          <li><a routerLink="/tienda">Tienda</a></li>
+          <li *ngIf="rol === 'administrador' || rol === 'admin'">
+            <a routerLink="/administracion">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-end">
+      <!-- Menú de mensajes -->
+      <div class="navbar-item">
+        <button class="button is-text" (click)="desplegarMenuMensajes()">
+          <span class="icon">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </button>
+      </div>
+      <!-- Menú del usuario -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <h1 class="navbar-link">
+          Bienvenido, <strong>{{ usuario }}</strong>
+        </h1>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" [routerLink]="['/perfil', usuario]">Perfil</a>
+          <a class="navbar-item" routerLink="/preferencias">Preferencias</a>
+          <a class="navbar-item" routerLink="/contacto">Soporte</a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item has-text-danger" (click)="pecharSesion()"
+            >Cerrar Sesión</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,282 @@
+<body>
+  <div class="fondo-degradado">
+    <div class="contenedor-registro">
+      <img
+        src="../../assets/img/logos/logoIcono.svg"
+        alt="Logo de la Página"
+        class="logo"
+      />
+      <!-- Campos de registro -->
+      <form [formGroup]="rexistroForm">
+        <div *ngIf="pasoActual === 1">
+          <h2 class="madimi-one-regular">Cuenta</h2>
+          <label for="correo">Correo</label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="Correo electrónico"
+            required
+            class="campo-registro"
+            formControlName="correo"
+          />
+          <label for="contrasena">Contraseña</label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            placeholder="Contraseña"
+            required
+            class="campo-registro"
+            formControlName="contrasena"
+          />
+          <label for="contrasena">Repetir Contraseña</label>
+          <input
+            type="password"
+            id="contrasenaRepetida"
+            placeholder="Repetir contraseña"
+            required
+            class="campo-registro"
+            formControlName="contrasenaRepetida"
+          />
+          <button type="submit" class="boton-registro" (click)="pasoActual = 2">
+            →
+          </button>
+        </div>
+        <div *ngIf="pasoActual === 2">
+          <h2 class="madimi-one-regular">Sobre Ti</h2>
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Nombre"
+            required
+            class="campo-registro"
+            formControlName="nombre"
+          />
+
+          <label for="apelidos">Apellidos</label>
+          <input
+            type="text"
+            id="apelidos"
+            name="apelidos"
+            placeholder="Apellidos"
+            required
+            class="campo-registro"
+            formControlName="apelidos"
+          />
+
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
+          <input
+            type="date"
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            placeholder="Fecha de Nacimiento"
+            required
+            class="campo-registro"
+            formControlName="fechaNacimiento"
+          />
+
+          <label for="usuario">Nombre de Usuario</label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            placeholder="Nombre de Usuario"
+            required
+            class="campo-registro"
+            formControlName="usuario"
+          />
+          <button type="submit" class="boton-registro" (click)="pasoActual = 1">
+            ←
+          </button>
+          <button type="submit" class="boton-registro" (click)="pasoActual = 3">
+            →
+          </button>
+        </div>
+        <div *ngIf="pasoActual === 3">
+          <h2 class="madimi-one-regular">Tu Perfil</h2>
+          <label for="foto">Subir Foto</label>
+          <input
+            type="file"
+            id="foto"
+            name="foto"
+            accept="image/*"
+            class="campo-registro"
+            formControlName="foto"
+          />
+
+          <label for="ubicacion">Ubicacion</label>
+          <input
+            type="text"
+            id="ubicacion"
+            placeholder="Ubicacion"
+            required
+            name="ubicacion"
+            class="campo-registro"
+            formControlName="ubicacion"
+          />
+
+          <label for="descripcion">Descripcion</label>
+          <textarea
+            id="descripcion"
+            placeholder="Describete en pocas palabras"
+            class="campo-registro"
+            name="descripcion"
+            formControlName="descripcion"
+          ></textarea>
+
+          <label for="sobreMi">Sobre Ti</label>
+          <input
+            type="text"
+            id="sobreMi"
+            placeholder="Sobre Mi"
+            required
+            name="sobreMi"
+            class="campo-registro"
+            formControlName="sobreMi"
+          />
+
+          <button type="submit" class="boton-registro" (click)="pasoActual = 2">
+            ←
+          </button>
+          <button type="submit" class="boton-registro" (click)="pasoActual = 4">
+            →
+          </button>
+        </div>
+        <div *ngIf="pasoActual === 4">
+          <h2 class="madimi-one-regular">Tu Perfil</h2>
+          <label for="juegosFavoritos">JuegosFavoritos</label>
+          <ng-select
+            [items]="opcionesBusqueda$ | async"
+            bindLabel="name"
+            bindValue="id"
+            [multiple]="true"
+            [searchable]="true"
+            name="juegosFavoritos"
+            [typeahead]="terminosBusqueda$"
+            formControlName="juegosFavoritos"
+          >
+          </ng-select>
+
+          <label for="etiquetas">Etiquetas</label>
+          <select
+            id="etiquetas"
+            class="campo-registro"
+            name="etiquetas"
+            multiple
+            formControlName="etiquetas"
+          >
+            <option *ngFor="let etiqueta of etiquetas">
+              {{ etiqueta.nombre }}
+            </option>
+          </select>
+
+          <label for="genero">Genero</label>
+          <select
+            id="genero"
+            class="campo-registro"
+            name="genero"
+            formControlName="genero"
+          >
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+
+          <label for="orientacion">Orientacion</label>
+          <select
+            id="orientacion"
+            class="campo-registro"
+            name="orientacion"
+            formControlName="orientacion"
+          >
+            <option value="Heterosexual">Heterosexual</option>
+            <option value="Homosexual">Homosexual</option>
+            <option value="Bisexual">Bisexual</option>
+          </select>
+
+          <label for="busqueda">Que buscas?</label>
+          <select
+            id="busqueda"
+            class="campo-registro"
+            name="busqueda"
+            formControlName="busqueda"
+          >
+            <option value="Amistad">Amistad</option>
+            <option value="Amor">Amor</option>
+            <option value="Relacion">Relacion</option>
+          </select>
+
+          <button type="submit" class="boton-registro" (click)="pasoActual = 3">
+            ←
+          </button>
+          <button type="submit" class="boton-registro" (click)="pasoActual = 5">
+            →
+          </button>
+        </div>
+        <div *ngIf="pasoActual === 5">
+          <h2 class="madimi-one-regular">Conexiones</h2>
+          <label for="discord">Discord</label>
+          <input
+            type="text"
+            id="discord"
+            placeholder="Discord"
+            required
+            name="discord"
+            class="campo-registro"
+            formControlName="discord"
+          />
+          <label for="xbox">Xbox</label>
+          <input
+            type="text"
+            id="xbox"
+            placeholder="xbox"
+            name="xbox"
+            class="campo-registro"
+            formControlName="xbox"
+          />
+          <label for="playstation">Playstation</label>
+          <input
+            type="text"
+            id="playstation"
+            placeholder="Playstation"
+            name="playstation"
+            class="campo-registro"
+            formControlName="playstation"
+          />
+          <label for="steam">Steam</label>
+          <input
+            type="text"
+            id="steam"
+            placeholder="Steam"
+            name="steam"
+            class="campo-registro"
+            formControlName="steam"
+          />
+          <button type="submit" class="boton-registro" (click)="pasoActual = 4">
+            ←
+          </button>
+          <button
+            type="submit"
+            class="boton-registro"
+            [disabled]="!rexistroForm.valid"
+            (click)="pasoActual = 6; completarRegistro()"
+          >
+            →
+          </button>
+        </div>
+        <div *ngIf="pasoActual === 6">
+          <h2 class="madimi-one-regular">¡Listo!</h2>
+          <p class="madimi-one">
+            ¡Gracias por registrarte! Ahora puedes comenzar a conocer gente
+            nueva.
+          </p>
+          <button type="submit" class="boton-registro" routerLink="/portada">
+            →
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,160 @@
+<section class="section">
+  <!-- Contenido de la página -->
+  <div id="bienvenida" class="box">
+    <!-- Tabla de cosméticos -->
+    <h2 class="subtitle">Cosméticos</h2>
+    <div class="buttons">
+      <button class="button is-primary" (click)="abrirModal = true">
+        Crear nuevo cosmético
+      </button>
+    </div>
+    <table class="table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Precio</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cosmetico of cosmeticos">
+          <td>{{ cosmetico.nombre }}</td>
+          <td>{{ cosmetico.descripcion }}</td>
+          <td>{{ cosmetico.imagen }}</td>
+          <td>{{ cosmetico.precio }}</td>
+          <td>{{ cosmetico.tipo }}</td>
+          <td>
+            <button
+              class="button is-small is-info"
+              (click)="abrirModalEditar(cosmetico)"
+            >
+              Editar
+            </button>
+            <button
+              class="button is-small is-danger"
+              (click)="eliminarCosmetico(cosmetico)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Modal para crear un nuevo cosmético -->
+    <div class="modal" [class.is-active]="abrirModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Crear nuevo cosmético</p>
+          <button
+            class="delete"
+            aria-label="close"
+            (click)="abrirModal = false"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <form [formGroup]="cosmeticosFormulario">
+            <input
+              class="input"
+              type="text"
+              placeholder="Nombre"
+              formControlName="nombre"
+            />
+            <input
+              class="input"
+              type="text"
+              placeholder="Descripción"
+              formControlName="descripcion"
+            />
+            <input
+              class="input"
+              type="text"
+              placeholder="Imagen"
+              formControlName="imagen"
+            />
+            <input
+              class="input"
+              type="number"
+              placeholder="Precio"
+              formControlName="precio"
+            />
+            <select class="input" formControlName="tipo">
+              <option value="Cosmetico">Cosmetico</option>
+              <option value="SuperZuums">SuperZuums</option>
+            </select>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button is-success"
+            (click)="crearCosmetico(); abrirModal = false"
+          >
+            Crear
+          </button>
+          <button class="button" (click)="abrirModal = false">Cancelar</button>
+        </footer>
+      </div>
+    </div>
+    <!-- Modal para editar un cosmético -->
+    <div class="modal" [class.is-active]="cosmeticoEditar">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Editar cosmético</p>
+          <button
+            class="delete"
+            aria-label="close"
+            (click)="cosmeticoEditar = null"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <form [formGroup]="cosmeticosFormulario">
+            <input
+              class="input"
+              type="text"
+              placeholder="Nombre"
+              formControlName="nombre"
+            />
+            <input
+              class="input"
+              type="text"
+              placeholder="Descripción"
+              formControlName="descripcion"
+            />
+            <input
+              class="input"
+              type="text"
+              placeholder="Imagen"
+              formControlName="imagen"
+            />
+            <input
+              class="input"
+              type="number"
+              placeholder="Precio"
+              formControlName="precio"
+            />
+            <select class="input" formControlName="tipo">
+              <option value="Cosmetico">Cosmetico</option>
+              <option value="SuperZuums">SuperZuums</option>
+            </select>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button is-success"
+            (click)="editarCosmetico(); cosmeticoEditar = null"
+          >
+            Guardar
+          </button>
+          <button class="button" (click)="cosmeticoEditar = null">
+            Cancelar
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>

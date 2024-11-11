@@ -1,0 +1,63 @@
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/portada">
+      <img src="../../assets/img/logos/logoIcono.svg" alt="Logo de zuum" />
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/administracion">Inicio</a>
+      <a class="navbar-item" routerLink="/administracion/usuarios">Usuarios</a>
+      <a class="navbar-item" routerLink="/administracion/mensajes">Mensajes</a>
+      <a class="navbar-item" routerLink="/administracion/soporte">Soporte</a>
+      <a class="navbar-item" routerLink="/administracion/etiquetas"
+        >Etiquetas</a
+      >
+      <a class="navbar-item" routerLink="/administracion/temporadas"
+        >Temporadas</a
+      >
+      <a class="navbar-item" routerLink="/administracion/cosmeticos"
+        >Cosméticos</a
+      >
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-info" routerLink="/portada">Volver a Zuum</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+  <!-- Contenido de la página -->
+  <div id="bienvenida" class="box">
+    <h1 class="title">Bienvenido/a, Administrador</h1>
+
+    <!-- Botones para acceder a los distintos sitios -->
+    <div class="buttons">
+      <a class="button is-primary" routerLink="/administracion/usuarios"
+        >Usuarios</a
+      >
+      <a class="button is-primary" routerLink="/administracion/mensajes"
+        >Mensajes</a
+      >
+      <a class="button is-primary" routerLink="/administracion/soporte"
+        >Soporte</a
+      >
+      <a class="button is-primary" routerLink="/administracion/etiquetas"
+        >Etiquetas</a
+      >
+      <a class="button is-primary" routerLink="/administracion/temporadas"
+        >Temporadas</a
+      >
+      <a class="button is-primary" routerLink="/administracion/cosmeticos"
+        >Cosméticos</a
+      >
+    </div>
+  </div>
+</section>
+<section class="section">
+  <router-outlet></router-outlet>
+</section>

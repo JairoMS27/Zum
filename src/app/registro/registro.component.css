@@ -1,0 +1,140 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.fondo-degradado {
+  background: linear-gradient(45deg, #07d7fe, #7919f5, #f607d5);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 200% 100%;
+  animation: movimientoDegradado 10s ease infinite;
+}
+
+.logo {
+  width: 100px; /* Ajusta el tamaño según tu diseño */
+  margin-bottom: 20px;
+}
+
+@keyframes movimientoDegradado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.contenedor-registro {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.contenedor-registro h2 {
+  color: #333;
+}
+
+/* Campos de registro */
+.campo-registro {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Botón de registro */
+.boton-registro {
+  background: none;
+  color: #000;
+  font-size: 36px; /* Tamaño más grande para la flecha */
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-registro:hover {
+  transform: translateX(
+    10px
+  ); /* Desplaza la flecha hacia la derecha al pasar el mouse */
+}
+
+/* Etiquetas de registro */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.foto-de-perfil {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ng-select {
+  --ng-select-highlight: #007bff;
+  --ng-select-border: #ced4da;
+  --ng-select-disabled: #6c757d;
+  --ng-select-disabled-background: #f8f9fa;
+}
+
+.ng-select .ng-select-container {
+  border-radius: 4px;
+  border-color: var(--ng-select-border);
+  background-color: #fff;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input {
+  font-size: 1rem;
+  color: #495057;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-value {
+  background-color: #fff;
+  color: #495057;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-value .ng-value-icon {
+  color: var(--ng-select-disabled);
+}
+
+.ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-value
+  .ng-value-icon:hover {
+  color: var(--ng-select-highlight);
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  padding: 0.5rem 1rem;
+  color: #495057;
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.selected {
+  background-color: #fff;
+  color: var(--ng-select-highlight);
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover,
+.ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.selected:hover {
+  background-color: #f8f9fa;
+}

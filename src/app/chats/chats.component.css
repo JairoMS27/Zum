@@ -1,0 +1,122 @@
+/* Estilos generales */
+.contenedor-chat {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Estilos del chat */
+.encabezado-chat {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos de los mensajes */
+.informacion-usuario {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos de la imagen del usuario */
+.informacion-usuario img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Estilos del nombre del usuario */
+.nombre-usuario {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Estilos del estado del usuario */
+.menu-opciones {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos de los botones */
+.boton-retroceso {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos del icono de retroceso */
+.boton-menu {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* Estilos del icono de menú */
+.icono-menu {
+  font-size: 20px;
+}
+
+/* Estilos del contenido del chat */
+.contenido-chat {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Estilos de los mensajes */
+.mensaje-enviado {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  max-width: 70%;
+  align-self: flex-end;
+}
+
+/* Estilos del mensaje */
+.mensaje-enviado p {
+  margin: 0;
+}
+
+/* Estilos del mensaje recibido */
+.pie-chat {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #34495e;
+}
+
+/* Estilos del input y botón */
+.entrada-mensaje {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+  border-radius: 20px; /* Redondea los bordes del input */
+  border: none;
+}
+
+/* Estilos del botón de enviar */
+.boton-enviar {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 50%; /* Hace el botón con un icono redondo */
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Estilos del icono de enviar */
+.icono-enviar {
+  font-size: 18px;
+}

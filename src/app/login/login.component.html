@@ -1,0 +1,36 @@
+<div class="fondoAnimado">
+  <div class="contenedor-login">
+    <div class="logo">
+      <img src="../../assets/img/logos/logoIcono.svg" alt="Logo de Zuum" />
+    </div>
+    <form (ngSubmit)="enviarFormulario($event)">
+      <div class="grupo-formulario">
+        <label for="usuario">Usuario:</label>
+        <input
+          type="text"
+          id="usuario"
+          name="usuario"
+          required
+          [formControl]="usuario"
+        />
+        <p class="help is-danger" *ngIf="errorUsuario">
+          {{ errorUsuario }}
+        </p>
+      </div>
+      <div class="grupo-formulario">
+        <label for="contrasena">Contraseña:</label>
+        <input
+          type="password"
+          id="contrasena"
+          name="contrasena"
+          [formControl]="contrasena"
+          required
+        />
+        <p class="help is-danger" *ngIf="errorContrasena">
+          {{ errorContrasena }}
+        </p>
+      </div>
+      <button type="submit" class="boton-enviar">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>

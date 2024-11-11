@@ -1,0 +1,125 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<!-- Añadir el componente mensajes -->
+<app-mensajes [mostrarMenu]="mostrarMenu"></app-mensajes>
+<section class="hero is-fullheight">
+  <div class="notification is-primary" *ngIf="esPremium">
+    <button class="delete" (click)="esPremium = false"></button>
+    Ya estás suscrito a Premium.
+  </div>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="suscripcionTitulo">
+        Descubre nuestras increíbles ofertas Premium
+      </h1>
+      <p class="suscripcionDescripcion">
+        ¡Únete a nosotros y disfruta de beneficios exclusivos!
+      </p>
+      <a class="button is-info is-large" (click)="abrirModal()">Únete</a>
+    </div>
+  </div>
+</section>
+
+<section id="subscriptions" class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half">
+        <div class="contenedorSuscripcion suscripcion-gratis">
+          <h2 class="title is-4">Gratuito</h2>
+          <p>Disfruta de nuestros servicios básicos sin costo alguno.</p>
+          <ul class="suscripcionCaracteristicas">
+            <li>Sin Anuncios</li>
+          </ul>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="contenedorSuscripcion suscripcionPremium">
+          <h2 class="title is-4">Premium</h2>
+          <p class="suscripcionPrecio">12.99€/mes</p>
+          <ul class="suscripcionCaracteristicas">
+            <li>Pase de Batalla Incluido</li>
+            <li>5 SuperZuums de Regalo cada Mes</li>
+            <li>Descuentos exclusivos en la Tienda</li>
+            <li>Corona Premium</li>
+            <li>Personalizar Color del Nombre</li>
+            <li>Soporte Prioritario</li>
+          </ul>
+          <a class="button is-fullwidth is-primary" (click)="abrirModal()"
+            >Suscribirse</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>
+
+<!-- Modal para pagar -->
+<div class="modal" [class.is-active]="modalAbierto">
+  <div class="contenedor">
+    <div class="circulo">
+      <div class="contenedor-logo">
+        <img src="../../assets/img/logos/logoIcono.svg" alt="logoIcono" />
+      </div>
+    </div>
+    <div class="encabezado">
+      <h1>Detalles de Pago</h1>
+      <div class="detalles-pago">
+        <div class="detalle">
+          <span>Plan Premium</span>
+          <span>12.99€ /mes</span>
+        </div>
+        <hr />
+        <div class="detalle">
+          <span><strong>Precio Total</strong></span>
+          <span>12.99€</span>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="pagoForm" (ngSubmit)="pagar()" class="formulario-pago">
+      <h2>Datos de Pago</h2>
+      <div class="grupo-formulario">
+        <label for="numero-tarjeta">Número de Tarjeta:</label>
+        <input
+          type="number"
+          id="numero-tarjeta"
+          name="numero-tarjeta"
+          placeholder="XXXX-XXXX-XXXX-XXXX"
+          formControlName="numeroTarjeta"
+          required
+        />
+      </div>
+      <div class="grupo-formulario">
+        <label for="fecha-expiracion">Fecha de Expiración:</label>
+        <input
+          type="text"
+          id="fecha-expiracion"
+          name="fecha-expiracion"
+          placeholder="MM/YY"
+          required
+          formControlName="fechaExpiracion"
+        />
+      </div>
+      <div class="grupo-formulario">
+        <label for="cvv">CVV:</label>
+        <input
+          type="text"
+          id="cvv"
+          name="cvv"
+          placeholder="XXX"
+          required
+          formControlName="cvv"
+        />
+      </div>
+      <button class="btnPagar" type="submit">Pagar</button>
+    </form>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="modalAbierto = false"
+  ></button>
+</div>

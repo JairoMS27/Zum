@@ -1,0 +1,72 @@
+/* Fondo del menu de mensajes */
+.modalFondo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+/* Fondo del lateral de mensajes */
+.modalContenido {
+  width: 70%;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Estilos el contenedor */
+.zuumbidoContenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para la foto */
+.zuumbidoAvatar img.avatar {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 5px;
+}
+
+/* Estilos Seccion de mensajes */
+.mensaje {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+/* Estilos Avatar en los mensajes */
+.mensajeAvatar {
+  margin-right: 15px;
+}
+
+/* Estilos Avatar foto */
+.mensajeAvatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Estilos Contenido del Mensaje */
+.mensajeContenido {
+  flex-grow: 1;
+}
+
+/* Estilos para el Remitente */
+.mensajeRemitente {
+  font-weight: bold;
+}
+
+/* Estilos para el texto */
+.mensajeTexto {
+  margin-top: 5px;
+  font-size: 0.9em;
+}

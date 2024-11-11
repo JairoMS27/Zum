@@ -1,0 +1,37 @@
+<div class="contenedor-chat">
+  <header class="encabezado-chat">
+    <div class="informacion-usuario">
+      <button class="boton-retroceso" routerLink="/portada">
+        <i class="fas fa-arrow-left icono-retroceso"></i>
+      </button>
+      <!-- Foto del usuario -->
+      <img [src]="mensajes[usuario].foto" alt="Foto del usuario" />
+      <span class="nombre-usuario"> {{ usuario }} </span>
+    </div>
+    <div class="menu-opciones">
+      <button class="boton-menu">
+        <i class="fas fa-ellipsis-v icono-menu"></i>
+      </button>
+    </div>
+  </header>
+  <div class="contenido-chat">
+    <!-- Contenido del chat -->
+    <div
+      class="mensaje-enviado"
+      *ngFor="let mensaje of mensajes[usuario].mensajes"
+    >
+      <p>{{ mensaje }}</p>
+    </div>
+  </div>
+  <div class="pie-chat">
+    <input
+      type="text"
+      class="entrada-mensaje"
+      placeholder="Escribe tu mensaje..."
+      [(ngModel)]="mensajeNuevo"
+    />
+    <button class="boton-enviar" (click)="enviarMensaje()">
+      <i class="fas fa-paper-plane icono-enviar"></i>
+    </button>
+  </div>
+</div>

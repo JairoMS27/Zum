@@ -1,0 +1,30 @@
+/* Estilos para las pestañas de la barra de navegación personalizada */
+.custom-navbar-tabs {
+  flex-grow: 1; /* Permite que las pestañas crezcan para ocupar el espacio disponible */
+  justify-content: center; /* Centra las pestañas horizontalmente */
+}
+
+/* Estilos para el botón Premium */
+.premium {
+  /* Crea un gradiente de color para el fondo del botón */
+  background: linear-gradient(
+    to right,
+    rgb(105, 10, 168),
+    rgb(202, 100, 4),
+    rgb(105, 10, 168)
+  );
+  /* Hace que el texto del botón sea transparente para mostrar el gradiente de fondo */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Estilos para el contenido de los elementos de la barra de navegación */
+.navbar-item .media-content .content {
+  border-left: 1px solid #dbdbdb;
+  padding-left: 10px;
+}
+
+/* Centra el texto de los elementos de la barra de navegación */
+.navbar-item.has-text-centered {
+  justify-content: center;
+}

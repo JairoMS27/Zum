@@ -1,0 +1,10 @@
+.hero-body {
+  background-image: url("../../assets/img/temporada/1/background.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+.center-card {
+  max-width: 400px;
+  margin: 0 auto;
+}

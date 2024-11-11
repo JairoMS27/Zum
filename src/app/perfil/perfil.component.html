@@ -1,0 +1,156 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<!-- Añadir el componente mensajes -->
+<app-mensajes [mostrarMenu]="mostrarMenu"></app-mensajes>
+<section class="section">
+  <h1 class="title">Bienvenido a tu Perfil, {{ usuario.nombre }}</h1>
+  <h2 class="subtitle">
+    Aqui podras personalizar tu ficha para conocer a gente nueva!
+  </h2>
+</section>
+<!-- Configuración de la ficha -->
+<section class="section">
+  <h2 class="subtitle">Configuración de la Ficha</h2>
+  <form>
+    <div class="field">
+      <label class="label">Nombre</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Tu nombre"
+          name="nombre"
+          [(ngModel)]="usuario.nombre"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Foto</label>
+      <div class="control">
+        <input class="input" type="file" accept="image/*" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Ciudad</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Tu ciudad"
+          name="ubicacion"
+          [(ngModel)]="usuario.ubicacion"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Descripcion Corta</label>
+      <div class="control">
+        <textarea
+          class="textarea"
+          placeholder="Descripcion Corta"
+          name="sobreMi"
+          [(ngModel)]="usuario.descripcion"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Etiquetas</label>
+      <div class="control">
+        <div class="select">
+          <select name="etiquetas" [(ngModel)]="usuario.etiquetas">
+            <option *ngFor="let etiqueta of etiquetas">
+              {{ etiqueta.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Sobre Mi</label>
+      <div class="control">
+        <textarea
+          class="textarea"
+          placeholder="Sobre Mi"
+          name="sobreMi"
+          [(ngModel)]="usuario.sobreMi"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Juegos Favoritos</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Tus juegos favoritos"
+          name="juegosFavoritos"
+          [(ngModel)]="usuario.juegosFavoritos"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Discord</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Discord"
+          name="discord"
+          [(ngModel)]="usuario.discord"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Xbox</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Xbox"
+          name="xbox"
+          [(ngModel)]="usuario.xbox"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Playstation</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Playstation"
+          name="playstation"
+          [(ngModel)]="usuario.playstation"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Steam</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Steam"
+          name="steam"
+          [(ngModel)]="usuario.steam"
+        />
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button class="button is-primary" (click)="guardarCambios()">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

@@ -1,0 +1,61 @@
+<div class="modal" [class.is-active]="mostrarMenu">
+  <div class="modalFondo" (click)="mostrarMenu = false">
+    <div class="modalContenido">
+      <!-- Sección de Zuumbidos -->
+      <div class="zuumbidos-section">
+        <h2 class="title is-4">Zuumbidos</h2>
+        <div class="columns is-multiline">
+          <!-- ForEach para los zumbidos -->
+          <div
+            class="column is-one-third"
+            *ngFor="let usuario of nombresDeUsuarios"
+          >
+            <div>
+              <div class="zuumbidoContenido">
+                <div class="zuumbidoAvatar">
+                  <img
+                    class="avatar"
+                    [src]="mensajes[usuario].foto"
+                    alt="Foto del usuario"
+                  />
+                </div>
+                <p class="is-size-6 has-text-centered">{{ usuario }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mensajes-section">
+        <h2 class="title is-4">Mensajes Directos</h2>
+        <!-- ForEach para los mensajes -->
+        <div class="messages">
+          <div
+            class="mensaje"
+            *ngFor="let usuario of nombresDeUsuarios"
+            (click)="abrirChat(usuario)"
+          >
+            <div class="mensajeAvatar">
+              <img
+                [src]="mensajes[usuario].foto"
+                alt="Avatar del Remitente 1"
+              />
+            </div>
+            <div class="mensajeContenido">
+              <p class="mensajeRemitente">{{ usuario }}</p>
+              <p class="mensajeTexto">
+                {{
+                  mensajes[usuario].mensajes[
+                    mensajes[usuario].mensajes.length - 1
+                  ]
+                }}
+              </p>
+            </div>
+            <div class="mensajeRespuesta">
+              <i class="fas fa-reply"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

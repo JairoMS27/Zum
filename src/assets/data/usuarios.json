@@ -1,0 +1,22 @@
+{
+  "usuarios": [
+    {
+      "usuario": "usuario",
+      "contrasena": "usuario",
+      "matches": [],
+      "likes": 2,
+      "superZuums": 0,
+      "premium": false,
+      "rol": "normal"
+    },
+    {
+      "usuario": "admin",
+      "contrasena": "admin",
+      "matches": [],
+      "likes": 0,
+      "superZuums": 0,
+      "premium": false,
+      "rol": "administrador"
+    }
+  ]
+}

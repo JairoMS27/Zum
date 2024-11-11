@@ -1,0 +1,12 @@
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-item h2 {
+  color: #3273dc;
+  font-weight: bold;
+}
+
+.faq-item p {
+  color: #555;
+}

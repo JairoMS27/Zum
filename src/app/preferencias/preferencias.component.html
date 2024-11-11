@@ -1,0 +1,180 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/portada">
+      <img src="../../assets/img/logos/logoIcono.svg" width="112" height="28" />
+    </a>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Preferencias del Usuario</h1>
+    <div class="columns">
+      <div class="column is-one-third">
+        <!-- Menú de navegación lateral (opcional) -->
+        <aside class="menu">
+          <p class="menu-label">Configuración</p>
+          <ul class="menu-list">
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Preferencias</a></li>
+            <li><a href="#">Privacidad</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <!-- Contenido de preferencias -->
+        <form>
+          <!-- Campo de género (select box) -->
+          <div class="field">
+            <label class="label">Preferencias</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                  <option value="ambos">Ambos</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Intereses</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Escribe tus intereses"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox" />
+                Aceptar notificaciones por correo electrónico
+              </label>
+            </div>
+          </div>
+
+          <!-- Sección de configuración adicional -->
+          <div class="section">
+            <h2 class="subtitle">Configuración Adicional</h2>
+
+            <div class="field">
+              <label class="label">Idioma Preferido</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                    <option value="fr">Francés</option>
+                  </select>
+                </div>
+              </div>
+              <p class="help">
+                Selecciona tu idioma preferido para la interfaz.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">Zona Horaria</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option value="utc-5">
+                      UTC-5 (Hora estándar del este)
+                    </option>
+                    <option value="utc-4">
+                      UTC-4 (Hora de verano del este)
+                    </option>
+                    <option value="utc">
+                      UTC (Tiempo Universal Coordinado)
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <p class="help">Selecciona tu zona horaria preferida.</p>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Activar modo oscuro
+                </label>
+              </div>
+              <p class="help">
+                Habilita el modo oscuro para una experiencia visual más cómoda
+                por la noche.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sección de Privacidad -->
+          <div class="section">
+            <h2 class="subtitle">Privacidad</h2>
+
+            <div class="field">
+              <label class="label"
+                >Configuración de Visibilidad del Perfil</label
+              >
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" name="visibility" checked />
+                  Visible para todos
+                </label>
+                <label class="radio">
+                  <input type="radio" name="visibility" />
+                  Visible solo para amigos
+                </label>
+                <label class="radio">
+                  <input type="radio" name="visibility" />
+                  Privado
+                </label>
+              </div>
+              <p class="help">Selecciona quién puede ver tu perfil.</p>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Aceptar solicitudes de amistad automáticamente
+                </label>
+              </div>
+              <p class="help">
+                Habilita esta opción para aceptar automáticamente las
+                solicitudes de amistad.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">Gestión de Datos Personales</label>
+              <div class="control">
+                <button class="button is-danger" type="button">
+                  Eliminar Datos
+                </button>
+              </div>
+              <p class="help">
+                Elimina todos tus datos personales de forma permanente.
+              </p>
+            </div>
+          </div>
+
+          <!-- Botón de guardar cambios -->
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

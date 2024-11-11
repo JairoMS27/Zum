@@ -1,0 +1,87 @@
+body {
+  background-color: #f5f5f5;
+}
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background: linear-gradient(45deg, #07d7fe, #7919f5, #f607d5);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s infinite;
+  color: #ffffff;
+  text-align: center;
+}
+.card-section {
+  padding: 3rem 0;
+}
+.premium-section {
+  background-color: #2ecc71;
+  color: #ffffff;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+/* Estilos titulo */
+.suscripcionTitulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Estilos subtitulo */
+.suscripcionDescripcion {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para el contenedor de la Suscripcion */
+.contenedorSuscripcion {
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la suscripcion gratis */
+.suscripcion-gratis {
+  background-color: #fff;
+}
+
+/* Estilos para la suscripcion premium */
+.suscripcionPremium {
+  background: linear-gradient(to right, #07d7fe, #f607d5);
+  color: #fff;
+}
+
+/* Estilos para el precio de la suscripcion */
+.suscripcionPrecio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para las caracteristicas */
+.suscripcionCaracteristicas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilos para la lista de las caracteristicas */
+.suscripcionCaracteristicas li {
+  margin-bottom: 0.5rem;
+}
+
+/* Crea la animacion para el fondo */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
