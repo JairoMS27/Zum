@@ -8,7 +8,7 @@ import { ApiResponse } from './api-response';
   providedIn: 'root',
 })
 export class XogosService {
-  private API_KEY = '99da80d9f39f4b0d842ee3503541c2b3'; // Clave de la API
+  private API_KEY = ''; // Clave de la API
   private BASE_URL = 'https://api.rawg.io/api/games'; // URL base de la API
 
   constructor(private http: HttpClient) {}
