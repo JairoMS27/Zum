@@ -1,30 +1,206 @@
-/* Estilos para las pestañas de la barra de navegación personalizada */
-.custom-navbar-tabs {
-  flex-grow: 1; /* Permite que las pestañas crezcan para ocupar el espacio disponible */
-  justify-content: center; /* Centra las pestañas horizontalmente */
+.navbar {
+  padding: 0;
+  height: 64px;
+  background-color: #1a1f2c;
 }
 
-/* Estilos para el botón Premium */
-.premium {
-  /* Crea un gradiente de color para el fondo del botón */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.logo-container {
+  padding: 8px;
+  img {
+    height: 28px;
+    width: auto;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 0 16px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 4px;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Eliminamos el gap entre elementos */
+}
+
+.logout-button {
+  color: #f44336;
+}
+
+.premium-button {
+  color: transparent;
+}
+
+.premium-button span {
   background: linear-gradient(
-    to right,
-    rgb(105, 10, 168),
-    rgb(202, 100, 4),
-    rgb(105, 10, 168)
+    90deg,
+    #ffa41d,
+    #ff5757
   );
-  /* Hace que el texto del botón sea transparente para mostrar el gradiente de fondo */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Estilos para el contenido de los elementos de la barra de navegación */
-.navbar-item .media-content .content {
-  border-left: 1px solid #dbdbdb;
-  padding-left: 10px;
+.premium-button:hover span {
+  background: linear-gradient(
+    90deg,
+    #ff5757,
+    #ffa41d
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Centra el texto de los elementos de la barra de navegación */
-.navbar-item.has-text-centered {
+.profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.mat-icon-button {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+}
+
+
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .user-button span {
+    display: none;
+  }
+}
+
+
+.notification-menu {
+  max-width: 350px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.notification-list {
+  mat-list-item {
+    height: auto;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    
+    &.unread {
+      background-color: #e8f0fe;
+    }
+  }
+}
+
+.notification-title {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.notification-content {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.notification-time {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.4);
+  
+  .time-icon {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+}
+
+.unread-icon {
+  color: #1a73e8;
+}
+
+.mark-read-button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+mat-list-item:hover .mark-read-button {
+  opacity: 1;
+}
+
+.no-notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  color: rgba(0, 0, 0, 0.6);
+
+  .empty-icon {
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
 }

@@ -5,6 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CabeceraComponent } from './cabecera/cabecera.component';
@@ -33,6 +44,7 @@ import { AdminSoporteComponent } from './admin-soporte/admin-soporte.component';
 import { AdminEtiquetasComponent } from './admin-etiquetas/admin-etiquetas.component';
 import { AdminTemporadasComponent } from './admin-temporadas/admin-temporadas.component';
 import { AdminCosmeticosComponent } from './admin-cosmeticos/admin-cosmeticos.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -72,8 +84,20 @@ import { AdminCosmeticosComponent } from './admin-cosmeticos/admin-cosmeticos.co
     FormsModule,
     BrowserAnimationsModule,
     NgSelectModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatBadgeModule,
+    MatListModule,
+    MatSidenavModule,
+    MatGridListModule
+
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
