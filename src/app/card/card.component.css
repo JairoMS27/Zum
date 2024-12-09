@@ -1,0 +1,428 @@
+/* Estilos para el Contenedor Principal */
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  padding: 2rem;
+  background: whitesmoke;
+}
+
+.tarjeta-zuum {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+/* .tarjeta-zuum::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 20px solid transparent;
+  border-image: url("../../assets/img/marcos/1.png") 25% round;
+  border-image-outset: 20px; /* Aumentado a 10px 
+  overflow: hidden;
+  border-radius: 8px;
+}*/
+
+.boton-recarga {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos Principal de las Caras */
+.cara {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s;
+}
+
+/* Estilos para la Cara Trasera */
+.cara-trasera {
+  transform: rotateY(180deg); /* Rotacion para cuando le das al boton */
+  padding: 20px;
+  background-color: white;
+}
+
+/* Estilos para la Cara Delantera */
+.tarjeta-zuum.girada .cara-delantera {
+  transform: rotateY(180deg); /* Rotacion para cuando le das al boton */
+}
+
+.tarjeta-zuum.girada .cara-trasera {
+  transform: rotateY(0deg);
+}
+
+/* Estilos para la Imagen de Fondo */
+.imagen-fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estilos para la Información del Perfil */
+.info-perfil {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+}
+
+.info-perfil h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.info-perfil p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+/* Estilos para el contenedor de las Etiquetas */
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Estilos para cada etiqueta */
+.etiqueta {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+/* Estilos para el boton de girar */
+.boton-recarga {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para el icono de girar */
+.circulo-icono {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el icono del boton girar */
+.icono-girar {
+  color: #673ab7;
+  font-size: 20px;
+}
+
+/* Estilos para el Contenedor de los Botones */
+.contenedor-botones {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* Estilos para los Botones */
+.boton {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos para el Boton Rechazar */
+.boton-rechazar {
+  background-color: white;
+  color: #ff4444;
+  border: 2px solid #ff4444;
+}
+
+/* Estilos para el Boton Super Zuum */
+.boton-super-zuum {
+  background-color: white;
+  color: #9c27b0;
+  border: 2px solid #9c27b0;
+}
+
+/* Estilos para el Boton Me Gusta */
+.boton-me-gusta {
+  background-color: white;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+}
+
+/* Estilos adicionales para la tarjeta de match y el texto */
+.tarjeta-alta {
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Metropolis", sans-serif;
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.contenido-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: aparecerDesdeArriba 0.8s ease-out;
+}
+
+@keyframes aparecerDesdeArriba {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.texto-pequeno {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.texto-grande {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contenedor-input {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.entrada-mensaje {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.entrada-mensaje::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.entrada-mensaje:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.boton-enviar {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-enviar:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.boton-seguir {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton-seguir:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.ficha-incompleta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  padding: 2rem;
+}
+
+.ficha-incompleta mat-card {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.ficha-incompleta h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.ficha-incompleta p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.ficha-incompleta ul {
+  text-align: left;
+  margin: 1rem 0;
+  padding-left: 2rem;
+  color: #666;
+}
+
+.ficha-incompleta li {
+  margin-bottom: 0.5rem;
+}
+
+.ficha-incompleta button {
+  margin-top: 1.5rem;
+}
+
+.no-mas-perfiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  padding: 2rem;
+}
+
+.no-mas-perfiles mat-card {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.no-mas-perfiles h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.no-mas-perfiles p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.info-detallada {
+  padding: 20px;
+}
+
+.info-detallada h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info-detallada p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.info-detallada ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-detallada li {
+  color: #666;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.info-detallada li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #673ab7;
+}
+
+.no-mas-perfiles,
+.ficha-incompleta {
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal {
+  display: none;
+}
+
+.modal.is-active {
+  display: flex;
+}

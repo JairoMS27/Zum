@@ -1,0 +1,189 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<div class="main-content">
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Potencia tu experiencia</h1>
+      <p>Desbloquea funciones premium y aumenta tus posibilidades de encontrar a tu media naranja ideal</p>
+    </div>
+  </section>
+
+  <!-- Después del hero y antes de los planes -->
+  <div class="period-selector">
+    <mat-button-toggle-group [(ngModel)]="selectedPeriod" (change)="updatePrices()">
+      <mat-button-toggle value="monthly">Mensual</mat-button-toggle>
+      <mat-button-toggle value="annual">
+        Anual
+        <span class="discount-badge">-10%</span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <!-- Planes Section -->
+  <section class="plans-section">
+    <div class="plans-container">
+      <!-- Plan Básico -->
+      <mat-card class="plan-card basic">
+        <mat-card-header>
+          <mat-card-title>Básico</mat-card-title>
+          <mat-card-subtitle>
+            <div class="price-container">
+              <span class="price">${{getPlanPrice('basic') | number:'1.2-2'}}</span>
+              <span class="period">/{{selectedPeriod === 'monthly' ? 'mes' : 'año'}}</span>
+            </div>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul class="features-list">
+            <li>
+              <mat-icon>check</mat-icon>
+              Likes ilimitados
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              5 SuperLikes por semana
+            </li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button 
+                  [disabled]="isButtonDisabled('basic')"
+                  (click)="abrirModal('basic')">
+            {{getButtonText('basic')}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Plan Pro (Recomendado) -->
+      <mat-card class="plan-card pro recommended">
+        <div class="recommended-badge">Recomendado</div>
+        <mat-card-header>
+          <mat-card-title>Pro</mat-card-title>
+          <mat-card-subtitle>
+            <div class="price-container">
+              <span class="price">${{getPlanPrice('pro') | number:'1.2-2'}}</span>
+              <span class="period">/{{selectedPeriod === 'monthly' ? 'mes' : 'año'}}</span>
+            </div>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul class="features-list">
+            <li>
+              <mat-icon>check</mat-icon>
+              Likes ilimitados
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              5 SuperLikes por día
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              Acceso a descuentos exclusivos
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              Insignia de perfil premium
+            </li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button 
+                  color="primary"
+                  [disabled]="isButtonDisabled('pro')"
+                  (click)="abrirModal('pro')">
+            {{getButtonText('pro')}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Plan Premium -->
+      <mat-card class="plan-card premium">
+        <mat-card-header>
+          <mat-card-title>Premium</mat-card-title>
+          <mat-card-subtitle>
+            <div class="price-container">
+              <span class="price">${{getPlanPrice('premium') | number:'1.2-2'}}</span>
+              <span class="period">/{{selectedPeriod === 'monthly' ? 'mes' : 'año'}}</span>
+            </div>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul class="features-list">
+            <li>
+              <mat-icon>check</mat-icon>
+              Todas las características Pro
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              Soporte prioritario 24/7
+            </li>
+            <li>
+              <mat-icon>check</mat-icon>
+              Cosméticos exclusivos
+            </li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button 
+                  [disabled]="isButtonDisabled('premium')"
+                  (click)="abrirModal('premium')">
+            {{getButtonText('premium')}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+</div>
+
+<!-- Modal de pago -->
+<div class="modal" *ngIf="modalAbierto">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{{esPremium ? 'Cambiar Plan' : 'Confirmar suscripción'}}</h2>
+      <button class="close-button" (click)="cerrarModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="plan-details">
+        <h3>Plan seleccionado: {{getSelectedPlanName()}}</h3>
+        <div class="price-info">
+          <p class="price">{{selectedPrice | currency:'EUR':'symbol':'1.2-2'}}/{{selectedPeriod === 'monthly' ? 'mes' : 'año'}}</p>
+          <div class="period-selector">
+            <button [class.active]="selectedPeriod === 'monthly'" (click)="selectedPeriod = 'monthly'; updatePrices()">Mensual</button>
+            <button [class.active]="selectedPeriod === 'annual'" (click)="selectedPeriod = 'annual'; updatePrices()">Anual</button>
+          </div>
+        </div>
+
+        <div class="features-list">
+          <h3>Beneficios incluidos:</h3>
+          <ul>
+            <li *ngFor="let feature of getSelectedPlanFeatures()">
+              <i class="fas fa-check"></i> {{feature}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="subscription-status" *ngIf="esPremium">
+          <p class="current-plan">Plan actual: {{getTipoPremium() | titlecase}}</p>
+          <p class="warning" *ngIf="isPlanInferior(selectedPlan)">
+            <i class="fas fa-exclamation-triangle"></i>
+            Este plan tiene menos beneficios que tu plan actual
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-button" (click)="cerrarModal()">Cancelar</button>
+      <button class="confirm-button" (click)="pagar()">
+        {{esPremium ? 'Cambiar Plan' : 'Confirmar Pago'}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

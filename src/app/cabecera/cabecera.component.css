@@ -1,0 +1,268 @@
+/* Navbar principal */
+.navbar {
+  padding: 0;
+  height: 64px;
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Links de navegación */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  a {
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+/* Botón Premium */
+.premium-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  span {
+    background: linear-gradient(90deg, #ffa41d, #ff5757);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+
+    span {
+      background: linear-gradient(90deg, #ff5757, #ffa41d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+/* Acciones de navegación (iconos derecha) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+/* Botones de iconos */
+.mat-icon-button {
+  color: white !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+
+  .mat-icon {
+    color: white !important;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Botón de perfil y avatar */
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Añadido para centrar */
+  padding: 0;
+  height: 64px; /* Igualado a la altura del navbar */
+  min-width: 40px; /* Añadido para mantener consistencia */
+
+  &.mat-button {
+    padding: 0;
+    line-height: 64px; /* Igualado a la altura del navbar */
+
+    &::after {
+      display: none;
+    }
+
+    &:hover, &:active {
+      background: none;
+    }
+
+    .mat-button-focus-overlay {
+      background: none;
+    }
+
+    .mat-ripple {
+      display: none;
+    }
+  }
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block; /* Cambiado a block */
+  margin: auto; /* Centrado */
+}
+
+/* Menú de notificaciones */
+.notification-menu {
+  max-width: 400px;
+  min-width: 350px;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.notification-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.notification-item {
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 16px;
+  gap: 12px;
+  background: white;
+}
+
+.notification-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.notification-message {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.notification-time {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+
+.time-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.delete-button {
+  color: #f44336;
+}
+
+.delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.unread {
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+.unread-icon {
+  color: #2196f3;
+}
+
+.no-notifications {
+  padding: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.empty-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* Menús desplegables */
+mat-menu {
+  .mat-icon {
+    color: #666 !important;
+  }
+}
+
+.logout-button {
+  color: #f44336;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 999;
+  }
+
+  .nav-links.hidden {
+    display: none;
+  }
+
+  .navbar-container {
+    padding: 0 1rem; /* Reduce el padding en móvil */
+  }
+}

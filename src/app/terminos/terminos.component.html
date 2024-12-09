@@ -1,0 +1,260 @@
+<!-- Header adaptado para fondo blanco -->
+<mat-toolbar class="header light-theme">
+  <div class="container is-fluid">
+    <div class="navbar-start">
+      <a routerLink="/inicio"><h1 class="title">Zum</h1></a>
+      <a mat-button class="help-link" routerLink="/ayuda">
+        <span>Ayuda</span>
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <button
+        mat-button
+        [matMenuTriggerFor]="languageMenu"
+        class="language-button"
+      >
+        <mat-icon>translate</mat-icon>
+        <span>Idioma</span>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item *ngFor="let lang of languages">
+          {{ lang.name }}
+        </button>
+      </mat-menu>
+
+      <ng-container *ngIf="usuario; else loginButton">
+        <app-menu-usuario></app-menu-usuario>
+      </ng-container>
+      
+      <ng-template #loginButton>
+        <button mat-flat-button class="login-button" routerLink="/login">
+          <span class="button-content">
+            <mat-icon>person</mat-icon>
+            Iniciar Sesión
+          </span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="terms-container">
+  <div class="container">
+    <div class="terms-header">
+      <h1 class="title is-2">Términos y Servicios</h1>
+      <p class="subtitle is-6">Última actualización: 20 de Noviembre, 2024</p>
+    </div>
+
+    <div class="welcome-section">
+      <mat-card>
+        <mat-card-content>
+          <p>
+            Bienvenido a Zum. Al acceder y utilizar nuestro sitio web y
+            servicios, aceptas cumplir con los siguientes Términos de Servicio.
+            Si no estás de acuerdo con estos términos, te pedimos que no
+            utilices nuestros servicios.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="terms-sections">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>gavel</mat-icon>
+              <span>1. Aceptación de los Términos</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Al registrarte y utilizar Zum, confirmas que tienes al menos 18
+              años de edad y que tienes la capacidad legal para aceptar estos
+              Términos de Servicio.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>update</mat-icon>
+              <span>2. Modificaciones a los Términos</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Zum se reserva el derecho de modificar estos Términos de Servicio
+              en cualquier momento. Cualquier cambio será efectivo
+              inmediatamente después de su publicación en el sitio.
+            </p>
+            <p>
+              Te recomendamos revisar periódicamente estos términos para estar
+              informado sobre cualquier modificación.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>person_add</mat-icon>
+              <span>3. Registro de Usuario</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Para utilizar ciertos servicios de Zum, deberás crear una cuenta.
+              Al registrarte, proporcionas información precisa y actualizada.
+            </p>
+            <p>
+              Eres responsable de mantener la confidencialidad de tu contraseña
+              y de todas las actividades que ocurran bajo tu cuenta.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>rule</mat-icon>
+              <span>4. Conducta del Usuario</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>Al utilizar Zum, aceptas no:</p>
+            <ul>
+              <li>
+                Publicar contenido que sea ilegal, ofensivo, difamatorio o que
+                infrinja los derechos de terceros.
+              </li>
+              <li>
+                Utilizar el servicio para acosar, amenazar o intimidar a otros
+                usuarios.
+              </li>
+              <li>
+                Crear múltiples cuentas o suplantar la identidad de otra
+                persona.
+              </li>
+            </ul>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>copyright</mat-icon>
+              <span>5. Propiedad Intelectual</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Todos los contenidos, marcas registradas y derechos de propiedad
+              intelectual en Zum son propiedad de Zum o de sus licenciantes. No
+              se permite la reproducción, distribución o modificación de ningún
+              contenido sin el consentimiento previo por escrito de Zum.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>gavel</mat-icon>
+              <span>6. Limitación de Responsabilidad</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Zum no será responsable de ningún daño directo, indirecto,
+              incidental o consecuente que surja del uso o la imposibilidad de
+              uso de nuestros servicios. Esto incluye, pero no se limita a,
+              daños por pérdida de beneficios, datos o cualquier otra pérdida
+              intangible.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>shopping_cart</mat-icon>
+              <span>7. Tienda</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <ul>
+              <li>
+                Zum ofrece servicios y productos a través de su tienda en línea.
+                Todos los pagos se procesan a través de métodos de pago seguros.
+              </li>
+              <li>
+                Al realizar una compra, aceptas pagar el precio total indicado
+                en el momento de la compra, incluidos impuestos y tarifas
+                aplicables.
+              </li>
+              <li>
+                Política de Reembolsos: Todas las compras son finales. No se
+                aceptan reembolsos ni cambios una vez que se ha completado la
+                transacción. Te recomendamos que revises cuidadosamente tu
+                compra antes de finalizarla.
+              </li>
+            </ul>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>security</mat-icon>
+              <span>8. Indemnización</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Aceptas indemnizar y mantener a Zum, sus afiliados, directores y
+              empleados, libres de cualquier reclamación, daño, pérdida o gasto,
+              incluidos honorarios razonables de abogados, que surjan de tu uso
+              de los servicios o de tu violación de estos Términos de Servicio.
+            </p>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>balance</mat-icon>
+              <span>9. Ley Aplicable</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <p>
+              Estos Términos de Servicio se regirán e interpretarán de acuerdo
+              con las leyes de España. Cualquier disputa que surja en relación
+              con estos términos se resolverá en los tribunales competentes de
+              España.
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="contact-section">
+      <mat-card>
+        <mat-card-content>
+          <h3 class="title is-5">¿Necesitas ayuda?</h3>
+          <p>
+            Si tienes preguntas sobre estos Términos de Servicio, contáctanos:
+          </p>
+          <button mat-raised-button color="primary" routerLink="/ayuda">
+            <mat-icon>email</mat-icon>
+            Contactar Soporte
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

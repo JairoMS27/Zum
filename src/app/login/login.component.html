@@ -1,0 +1,60 @@
+<div class="animated-background">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <div class="logo-container">
+        <img src="../../assets/img/logos/Favicon.png" alt="Logo de Zuum" width="64" height="64" />
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="enviarFormulario($event)">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Usuario</mat-label>
+          <input matInput [formControl]="usuario" required>
+          <mat-error *ngIf="usuario.hasError('required') || errorUsuario">
+            {{ errorUsuario || 'El campo usuario es obligatorio' }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" [formControl]="contrasena" required>
+          <mat-error *ngIf="contrasena.hasError('required') || errorContrasena">
+            {{ errorContrasena || 'El campo contraseña es obligatorio' }}
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" 
+                class="w-100 login-button" 
+                type="submit">
+          Iniciar Sesión
+        </button>
+
+        <div class="divider">
+          <span>o continúa con</span>
+        </div>
+
+        <div class="social-buttons">
+          <button mat-stroked-button (click)="loginWithSteam()" 
+                  class="social-button steam" 
+                  type="button">
+            <i class="fab fa-steam"></i>
+          </button>
+        
+          <button mat-stroked-button (click)="loginWithGoogle()" 
+                  class="social-button google" 
+                  type="button">
+            <i class="fab fa-google"></i>
+          </button>
+        
+          <button mat-stroked-button (click)="loginWithDiscord()" 
+                  class="social-button discord" 
+                  type="button">
+            <i class="fab fa-discord"></i>
+
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

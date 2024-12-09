@@ -1,0 +1,35 @@
+<ng-container *ngIf="usuario$ | async as usuario; else loginButton">
+    <button mat-button class="profile-button" [matMenuTriggerFor]="profileMenu">
+      <img [src]="usuario.fotoPerfil" alt="Profile" class="profile-avatar">
+    </button>
+
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item [routerLink]="['/perfil', usuario.usuario]">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item routerLink="/inventario">
+        <mat-icon>inventory</mat-icon>
+        <span>Inventario</span>
+      </button>
+      <button mat-menu-item routerLink="/preferencias">
+        <mat-icon>settings</mat-icon>
+        <span>Ajustes</span>
+      </button>
+      <button mat-menu-item routerLink="/ayuda">
+        <mat-icon>help</mat-icon>
+        <span>Soporte</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="cerrarSesion()" class="logout-button">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #loginButton>
+    <button mat-raised-button color="primary" routerLink="/login">
+      Iniciar Sesión
+    </button>
+  </ng-template>

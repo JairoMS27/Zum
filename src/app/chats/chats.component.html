@@ -1,0 +1,55 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <button mat-icon-button routerLink="/portada">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="user-info">
+      <img [src]="mensajes[usuario].foto" [alt]="usuario" class="chat-avatar">
+      <span class="chat-username">{{usuario}}</span>
+    </div>
+    <div class="chat-actions">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openBlockModal()">
+          <i class="fas fa-ban"></i>
+          <span>Bloquear usuario</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteChatModal()">
+          <i class="fas fa-trash"></i>
+          <span>Eliminar chat</span>
+        </button>
+        <button mat-menu-item (click)="openReportModal()">
+          <i class="fas fa-flag"></i>
+          <span>Reportar usuario</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="mensajes-container">
+    <ng-container *ngFor="let mensaje of mensajes[usuario]?.mensajes">
+      <div *ngIf="mensaje.sistema" class="mensaje-sistema">
+        <div class="texto-sistema">
+          {{mensaje.texto}}
+        </div>
+      </div>
+      <div *ngIf="!mensaje.sistema" class="mensaje">
+        <p>
+          {{mensaje.texto}}
+          <span class="hora">{{mensaje.hora | date:'shortTime'}}</span>
+        </p>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="chat-input">
+    <mat-form-field appearance="outline" class="message-input">
+      <input matInput [(ngModel)]="mensajeNuevo" placeholder="Escribe un mensaje..." (keyup.enter)="enviarMensaje()">
+    </mat-form-field>
+    <button mat-fab color="primary" class="send-button" (click)="enviarMensaje()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>

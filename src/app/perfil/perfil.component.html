@@ -1,0 +1,249 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<div class="main-content">
+  <div class="gradient-bg">
+    <h1 class="hero-title">Mi Perfil</h1>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-content">
+      <!-- Sección de Foto -->
+      <section class="profile-section">
+        <h2>Foto de Perfil</h2>
+        <div class="photo-section">
+          <div class="photo-preview">
+            <img [src]="usuario.ficha.fotoPerfil" alt="Foto de perfil">
+          </div>
+          <div class="photo-upload">
+            <input type="file" #fileInput class="file-input" (change)="onImagenSeleccionada($event)" accept="image/*">
+            <button mat-raised-button color="primary" (click)="fileInput.click()">
+              <mat-icon>add_a_photo</mat-icon>
+              Cambiar foto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Información Personal -->
+      <section class="profile-section">
+        <h2>Información Personal</h2>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="usuario.ficha.nombre" name="nombre" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput [(ngModel)]="usuario.ficha.apellidos" name="apellidos" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ciudad</mat-label>
+          <input matInput [(ngModel)]="usuario.ficha.ubicacion" name="ubicacion" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Género</mat-label>
+          <mat-select [(ngModel)]="usuario.ficha.genero" name="genero" required>
+            <mat-option value="hombre">
+              <mat-icon>male</mat-icon> Hombre
+            </mat-option>
+            <mat-option value="mujer">
+              <mat-icon>female</mat-icon> Mujer
+            </mat-option>
+            <mat-option value="nobinario">
+              <mat-icon>transgender</mat-icon> No binario
+            </mat-option>
+            <mat-option value="otro">
+              <mat-icon>diversity_3</mat-icon> Otro
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Orientación Sexual</mat-label>
+          <mat-select [(ngModel)]="usuario.ficha.orientacion" name="orientacion" required>
+            <mat-option value="heterosexual">
+              <mat-icon>straight</mat-icon> Heterosexual
+            </mat-option>
+            <mat-option value="homosexual">
+              <mat-icon>diversity_1</mat-icon> Homosexual
+            </mat-option>
+            <mat-option value="bisexual">
+              <mat-icon>diversity_2</mat-icon> Bisexual
+            </mat-option>
+            <mat-option value="pansexual">
+              <mat-icon>all_inclusive</mat-icon> Pansexual
+            </mat-option>
+            <mat-option value="asexual">
+              <mat-icon>heart_broken</mat-icon> Asexual
+            </mat-option>
+            <mat-option value="otro">
+              <mat-icon>diversity_3</mat-icon> Otro
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput [(ngModel)]="usuario.ficha.descripcion" name="descripcion" rows="4" required></textarea>
+          <mat-hint>Cuéntanos un poco sobre ti</mat-hint>
+        </mat-form-field>
+      </section>
+
+      <!-- Intereses -->
+      <section class="profile-section">
+        <h2>Intereses</h2>
+        
+        <mat-card class="etiquetas-section">
+          <mat-card-header>
+            <mat-card-title>Etiquetas de interés</mat-card-title>
+            <mat-card-subtitle>Selecciona hasta 5 etiquetas que te representen ({{usuario.ficha.etiquetas.length}}/5)</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="etiquetas-container">
+              <div *ngFor="let categoria of objectKeys(etiquetasPorCategoria)" class="categoria-section">
+                <h3>{{categoriasTraducidas[categoria]}}</h3>
+                <div class="etiquetas-grid">
+                  <mat-chip-option
+                    *ngFor="let etiqueta of etiquetasPorCategoria[categoria]"
+                    [selected]="isEtiquetaSeleccionada(etiqueta)"
+                    (click)="toggleEtiqueta(etiqueta)"
+                    [class.selected]="isEtiquetaSeleccionada(etiqueta)">
+                    {{etiqueta.nombre}}
+                  </mat-chip-option>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Steam -->
+        <div class="platform-connection">
+          <h3>Steam</h3>
+          <div class="platform-actions">
+            <button mat-raised-button color="primary" *ngIf="!usuario.ficha.steam" (click)="conectarSteam()">
+              <i class="fab fa-steam"></i> Conectar Steam
+            </button>
+            <button mat-raised-button color="warn" *ngIf="usuario.ficha.steam" (click)="desconectarSteam()">
+              <i class="fab fa-steam"></i> Desconectar Steam
+            </button>
+            <button mat-icon-button *ngIf="usuario.ficha.steam" (click)="actualizarJuegosSteam()">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+          
+          <mat-form-field appearance="outline" class="full-width" *ngIf="usuario.ficha.steam">
+            <mat-label>Juegos Favoritos (máximo 3)</mat-label>
+            <mat-select [(ngModel)]="usuario.ficha.juegosFavoritos" name="juegos" multiple (selectionChange)="limitarSeleccion($event, 'juegos')">
+              <mat-option *ngFor="let juego of juegosDisponibles" [value]="juego">
+                {{juego}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- AniList -->
+        <div class="platform-connection">
+          <h3>AniList</h3>
+          <div class="platform-actions">
+            <button mat-raised-button color="primary" *ngIf="!usuario.ficha.aniList" (click)="conectarAniList()">
+              <i class="fas fa-tv"></i> Conectar AniList
+            </button>
+            <button mat-raised-button color="warn" *ngIf="usuario.ficha.aniList" (click)="desconectarAniList()">
+              <i class="fas fa-tv"></i> Desconectar AniList
+            </button>
+            <button mat-icon-button *ngIf="usuario.ficha.aniList" (click)="actualizarAnimes()">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+          
+          <mat-form-field appearance="outline" class="full-width" *ngIf="usuario.ficha.aniList">
+            <mat-label>Animes Favoritos (máximo 3)</mat-label>
+            <mat-select [(ngModel)]="usuario.ficha.animesFavoritos" name="animes" multiple (selectionChange)="limitarSeleccion($event, 'animes')">
+              <mat-option *ngFor="let anime of animesDisponibles" [value]="anime">
+                {{anime}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </section>
+
+      <!-- Plataformas -->
+      <section class="profile-section">
+        <h2>Plataformas</h2>
+        <div class="platforms-section">
+          <mat-form-field appearance="outline">
+            <mat-label>Discord</mat-label>
+            <input matInput [(ngModel)]="usuario.ficha.discord" name="discord" placeholder="Tu usuario de Discord">
+            <mat-icon matSuffix>discord</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Xbox</mat-label>
+            <input matInput [(ngModel)]="usuario.ficha.xbox" name="xbox" placeholder="Tu gamertag de Xbox">
+            <mat-icon matSuffix>games</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>PlayStation</mat-label>
+            <input matInput [(ngModel)]="usuario.ficha.playstation" name="playstation" placeholder="Tu ID de PlayStation">
+            <mat-icon matSuffix>gamepad</mat-icon>
+          </mat-form-field>
+        </div>
+      </section>
+
+      <!-- Sección Premium -->
+      <section class="profile-section premium-section">
+        <h2>Opciones Premium</h2>
+        <div class="premium-options">
+          <mat-slide-toggle [(ngModel)]="usuario.ficha.premium.mostrarIcono" name="mostrarIcono" [disabled]="!usuario.ficha.premium.activo">
+            Mostrar icono Premium
+          </mat-slide-toggle>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Color del nombre</mat-label>
+            <input matInput [(ngModel)]="usuario.ficha.premium.colorNombre" name="colorNombre" type="color" [disabled]="!usuario.ficha.premium.activo">
+            <mat-hint>Selecciona un color para tu nombre</mat-hint>
+          </mat-form-field>
+
+          <div class="premium-preview">
+            <h3>Vista previa:</h3>
+            <div class="preview-name">
+              <span [style.color]="usuario.ficha.premium.colorNombre">
+                {{usuario.ficha.nombre || 'Tu nombre'}}
+                <mat-icon *ngIf="usuario.ficha.premium.mostrarIcono" class="premium-icon">
+                  {{ usuario.ficha.premium.tipo === 'premium' ? 'workspace_premium' : 'stars' }}
+                </mat-icon>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overlay para usuarios no premium -->
+        <div class="premium-overlay" *ngIf="!usuario.ficha.premium.activo">
+          <div class="overlay-content">
+            <mat-icon class="premium-lock-icon">lock</mat-icon>
+            <h3>Funciones Premium</h3>
+            <p>Mejora tu plan para personalizar tu perfil</p>
+            <button mat-raised-button color="accent" routerLink="/premium">
+              <mat-icon>stars</mat-icon>
+              Mejorar Plan
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botones de acción -->
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" (click)="guardarCambios()">
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

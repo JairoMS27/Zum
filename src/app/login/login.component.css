@@ -1,0 +1,163 @@
+.animated-background {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #9b59b6, #3498db);
+  padding: 1rem;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100px;
+    height: auto;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.login-button {
+  height: 48px;
+  font-size: 1.1rem;
+  background-color: #3273dc; /* Color principal de Bulma */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #2366d1; /* Un tono más oscuro para hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.divider {
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::before { left: 0; }
+  &::after { right: 0; }
+
+  span {
+    background: white;
+    padding: 0 1rem;
+    color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.social-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  .social-button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    i {
+      font-size: 20px;
+    }
+
+    &.steam { 
+      color: #000000;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-color: #000000;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    &.google { 
+      color: #DB4437;
+      &:hover {
+        background-color: rgba(219, 68, 55, 0.05);
+        border-color: #DB4437;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(219, 68, 55, 0.1);
+      }
+    }
+    
+    &.discord { 
+      color: #7289DA;
+      &:hover {
+        background-color: rgba(114, 137, 218, 0.05);
+        border-color: #7289DA;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(114, 137, 218, 0.1);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+}
+
+.error-hint {
+  color: #f44336;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+mat-form-field {
+  margin-bottom: 1rem;
+}

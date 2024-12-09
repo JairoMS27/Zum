@@ -1,0 +1,141 @@
+<mat-toolbar class="header">
+  <div class="container is-fluid">
+    <div class="navbar-start">
+      <a routerLink="/inicio"><h1 class="title has-text-white">Zum</h1></a>
+      <a mat-button class="help-link" routerLink="/ayuda">
+        <span>Ayuda</span>
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <button mat-button [matMenuTriggerFor]="languageMenu" class="language-button">
+        <mat-icon>translate</mat-icon>
+        <span>Idioma</span>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item *ngFor="let lang of languages">
+          {{ lang.name }}
+        </button>
+      </mat-menu>
+
+      <ng-container *ngIf="usuario; else loginButton">
+        <app-menu-usuario></app-menu-usuario>
+      </ng-container>
+
+      <ng-template #loginButton>
+        <button mat-flat-button class="login-button" routerLink="/login">
+          <span class="button-content">
+            <mat-icon>person</mat-icon>
+            Iniciar Sesión
+          </span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 has-text-white">Game together, Love forever</h1>
+      <button class="button is-rounded is-medium custom-register-button" routerLink="/registro">
+        <span>Regístrate Ahora</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Sección de perfil -->
+<section class="profile-section">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <mat-card class="profile-card">
+          <div class="profile-header">
+            <img [src]="avatarUrl" alt="Perfil" class="profile-image">
+            <div class="profile-overlay">
+              <mat-icon class="crown-icon">crown</mat-icon>
+            </div>
+          </div>
+        
+          <mat-card-content class="profile-content">
+            <div class="profile-info">
+              <div class="name-section">
+                <mat-icon class="verified-icon">verified</mat-icon>
+                <h2>Carla Rodriguez</h2>
+                <span class="age">27</span>
+              </div>
+        
+              <div class="location">
+                <mat-icon>location_on</mat-icon>
+                <span>Santiago de Compostela</span>
+              </div>
+        
+              <p class="bio">
+                Gamer girl 🎮 
+                Support main en todos los juegos 💫
+                Amante de los gatos 🐱
+                Buscando duo para la vida 💝
+              </p>
+        
+              <div class="gaming-stats">
+                <div class="stat">
+                  <mat-icon>military_tech</mat-icon>
+                  <span>Diamond II</span>
+                </div>
+                <div class="stat">
+                  <mat-icon>schedule</mat-icon>
+                  <span>+1000h jugadas</span>
+                </div>
+              </div>
+        
+              <div class="gaming-tags">
+                <mat-chip-set>
+                  <mat-chip class="game-tag">
+                   
+                    PC
+                  </mat-chip>
+                  <mat-chip class="game-tag">
+                    
+                    Valorant
+                  </mat-chip>
+                  <mat-chip class="game-tag">
+                    
+                    LoL
+                  </mat-chip>
+                  <mat-chip class="game-tag">
+                    
+                    Gaming
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        
+        
+        
+      </div>
+
+      <div class="column is-half">
+        <div class="welcome-content">
+          <h3 class="title is-2 mb-5">Descubre conexiones reales</h3>
+          <div class="welcome-text">
+            <p class="is-size-5 mb-4">
+              ¡Bienvenido a Zum, el lugar donde los corazones encuentran su destino! 
+              Explora perfiles fascinantes y conecta con personas que comparten tus intereses.
+            </p>
+            <p class="is-size-5">
+              Cada perfil cuenta una historia única. Encuentra la tuya entre nuestra 
+              diversa comunidad de personas buscando conexiones auténticas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,210 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<div class="store-container">
+  <!-- Hero section -->
+  <div class="hero gradient-bg">
+    <div class="container">
+      <h1 class="hero-title">Tienda</h1>
+      <p class="hero-subtitle">Personaliza tu experiencia</p>
+      <div class="premium-badge" *ngIf="esPremium">
+        <mat-chip class="premium-chip" color="accent">
+          <mat-icon>stars</mat-icon>
+          {{tipoPremium === 'premium' ? 'Descuento Premium (15%)' : 'Descuento Pro (5%)'}}
+        </mat-chip>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cosméticos -->
+  <section class="store-section">
+    <div class="container">
+      <h2 class="section-title">Cosméticos</h2>
+      <div class="products-grid">
+        <mat-card class="product-card" *ngFor="let producto of cosmeticos">
+          <mat-card-header>
+            <mat-chip-set>
+              <mat-chip color="accent" *ngIf="producto.descuento">-{{producto.descuento}}%</mat-chip>
+              <mat-chip color="primary" *ngIf="producto.premium">Premium</mat-chip>
+            </mat-chip-set>
+          </mat-card-header>
+          <img mat-card-image [src]="producto.imagen" [alt]="producto.nombre">
+          <mat-card-content>
+            <h3>{{producto.nombre}}</h3>
+            <p class="description">{{producto.descripcion}}</p>
+            <div class="price-container">
+              <span class="price" [class.discounted]="producto.descuento">{{producto.precio}}€</span>
+              <span class="original-price" *ngIf="producto.descuento">{{producto.precioOriginal}}€</span>
+            </div>
+            <mat-chip-set *ngIf="descuentoTienda > 0">
+              <mat-chip color="warn">Descuento {{tipoPremium}} aplicado</mat-chip>
+            </mat-chip-set>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="abrirModal(producto)">
+              <mat-icon>shopping_cart</mat-icon>
+              Comprar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cosméticos Premium -->
+  <section class="store-section premium-section">
+    <div class="container">
+      <h2 class="section-title premium-title">
+        <mat-icon class="premium-icon">stars</mat-icon>
+        Cosméticos Premium
+      </h2>
+      <div class="products-grid">
+        <mat-card class="product-card premium-card" *ngFor="let producto of cosmeticosPremium">
+          <mat-card-header>
+            <mat-chip-set>
+              <mat-chip color="accent" *ngIf="producto.descuento">-{{producto.descuento}}%</mat-chip>
+              <mat-chip class="premium-exclusive">Exclusivo Premium</mat-chip>
+            </mat-chip-set>
+          </mat-card-header>
+          <img mat-card-image [src]="producto.imagen" [alt]="producto.nombre">
+          <mat-card-content>
+            <h3>{{producto.nombre}}</h3>
+            <p class="description">{{producto.descripcion}}</p>
+            <div class="price-container">
+              <span class="price" [class.discounted]="producto.descuento">{{producto.precio}}€</span>
+              <span class="original-price" *ngIf="producto.descuento">{{producto.precioOriginal}}€</span>
+            </div>
+            <mat-chip-set *ngIf="descuentoTienda > 0">
+              <mat-chip class="premium-discount">Descuento {{tipoPremium}} aplicado</mat-chip>
+            </mat-chip-set>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="abrirModal(producto)">
+              <mat-icon>shopping_cart</mat-icon>
+              Comprar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <!-- Overlay para usuarios no premium -->
+      <div class="premium-overlay" *ngIf="!esPremium">
+        <div class="overlay-content">
+          <mat-icon class="premium-lock-icon">lock</mat-icon>
+          <h3>Contenido Premium</h3>
+          <p>Mejora tu plan para acceder a cosméticos exclusivos</p>
+          <button mat-raised-button class="premium-button" routerLink="/premium">
+            <mat-icon>stars</mat-icon>
+            Mejorar Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paquetes de Likes -->
+  <section class="store-section likes-section">
+    <div class="container">
+      <h2 class="section-title">Paquetes de Likes</h2>
+      <div class="products-grid">
+        <mat-card class="product-card likes-card" *ngFor="let paquete of paquetesLikes">
+          <mat-card-header *ngIf="descuentoTienda > 0">
+            <mat-chip-set>
+              <mat-chip color="accent">-{{descuentoTienda}}%</mat-chip>
+            </mat-chip-set>
+          </mat-card-header>
+          <mat-card-content class="likes-content">
+            <mat-icon class="likes-icon">{{paquete.imagen}}</mat-icon>
+            <h3>{{paquete.cantidad}} Likes</h3>
+            <div class="price-container">
+              <span class="price" [class.discounted]="descuentoTienda > 0">{{paquete.precio}}€</span>
+              <span class="original-price" *ngIf="descuentoTienda > 0">{{paquete.precioOriginal}}€</span>
+            </div>
+            <mat-chip-set *ngIf="descuentoTienda > 0">
+              <mat-chip color="warn">Descuento {{tipoPremium}} aplicado</mat-chip>
+            </mat-chip-set>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="abrirModal(paquete)">
+              Comprar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paquetes de Super Likes -->
+  <section class="store-section likes-section">
+    <div class="container">
+      <h2 class="section-title">Paquetes de Super Likes</h2>
+      <div class="products-grid">
+        <mat-card class="product-card likes-card" *ngFor="let paquete of paquetesSuperLikes">
+          <mat-card-header *ngIf="descuentoTienda > 0">
+            <mat-chip-set>
+              <mat-chip color="accent">-{{descuentoTienda}}%</mat-chip>
+            </mat-chip-set>
+          </mat-card-header>
+          <mat-card-content class="likes-content">
+            <mat-icon class="likes-icon superlike">auto_awesome</mat-icon>
+            <h3>{{paquete.cantidad}} Super Likes</h3>
+            <div class="price-container">
+              <span class="price" [class.discounted]="descuentoTienda > 0">{{paquete.precio}}€</span>
+              <span class="original-price" *ngIf="descuentoTienda > 0">{{paquete.precioOriginal}}€</span>
+            </div>
+            <mat-chip-set *ngIf="descuentoTienda > 0">
+              <mat-chip color="warn">Descuento {{tipoPremium}} aplicado</mat-chip>
+            </mat-chip-set>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="abrirModal(paquete)">
+              Comprar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal de pago -->
+<div class="modal" *ngIf="modalAbierto">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Confirmar compra</h2>
+      <button class="close-button" (click)="cerrarModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="plan-details">
+        <h3>{{productoSeleccionado?.nombre || (productoSeleccionado?.tipo === 'like' ? 'Paquete de ' + productoSeleccionado?.cantidad + ' Likes' : 'Paquete de ' + productoSeleccionado?.cantidad + ' Super Likes')}}</h3>
+        
+        <div class="price-info">
+          <div class="price-details">
+            <div class="price-row">
+              <span>Precio base</span>
+              <span>{{productoSeleccionado?.precioOriginal || productoSeleccionado?.precio}}€</span>
+            </div>
+            <div class="price-row" *ngIf="descuentoTienda > 0">
+              <span>Descuento {{tipoPremium}}</span>
+              <span>-{{descuentoTienda}}%</span>
+            </div>
+            <div class="price-row total">
+              <span>Total</span>
+              <span>{{productoSeleccionado?.precio}}€</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-button" (click)="cerrarModal()">Cancelar</button>
+      <button class="confirm-button" (click)="procesarPago('card')">
+        Confirmar Pago
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

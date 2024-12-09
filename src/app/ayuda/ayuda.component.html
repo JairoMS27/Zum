@@ -1,0 +1,120 @@
+<mat-toolbar class="header">
+  <div class="container is-fluid">
+    <div class="navbar-start">
+      <a routerLink="/inicio"><h1 class="title has-text-white">Zum</h1></a>
+      <a mat-button class="help-link" routerLink="/ayuda">
+        <span>Ayuda</span>
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <button
+        mat-button
+        [matMenuTriggerFor]="languageMenu"
+        class="language-button"
+      >
+        <mat-icon>translate</mat-icon>
+        <span>Idioma</span>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item *ngFor="let lang of languages">
+          {{ lang.name }}
+        </button>
+      </mat-menu>
+
+      <ng-container *ngIf="usuario; else loginButton">
+        <app-menu-usuario></app-menu-usuario>
+      </ng-container>
+      
+      <ng-template #loginButton>
+        <button mat-flat-button class="login-button" routerLink="/login">
+          <span class="button-content">
+            <mat-icon>person</mat-icon>
+            Iniciar Sesión
+          </span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>
+<div class="help-container">
+  <!-- Header con buscador -->
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2 has-text-centered">Centro de Ayuda</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorías principales -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        <div class="column is-4" *ngFor="let category of faqCategories">
+          <mat-card class="category-card">
+            <mat-card-content>
+              <mat-icon class="category-icon">{{ category.icon }}</mat-icon>
+              <h3 class="title is-4">{{ category.name }}</h3>
+              <p class="subtitle is-6">{{ category.faqs.length }} artículos</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="section faq-section">
+    <div class="container">
+      <h2 class="title is-3 mb-5">Preguntas Frecuentes</h2>
+  
+      <div class="faq-container">
+        <mat-accordion class="custom-accordion">
+          <mat-expansion-panel *ngFor="let category of faqCategories; let i = index"
+                             [expanded]="expandedIndex === i"
+                             (opened)="expandedIndex = i"
+                             class="custom-panel">
+            <mat-expansion-panel-header class="custom-header">
+              <mat-panel-title>
+                <mat-icon class="category-icon">{{category.icon}}</mat-icon>
+                <span class="category-title">{{category.name}}</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+  
+            <div class="faq-content">
+              <div *ngFor="let faq of category.faqs" class="faq-item">
+                <h4 class="faq-question">{{faq.question}}</h4>
+                <p class="faq-answer">{{faq.answer}}</p>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section contact-section">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered mb-5">¿Necesitas más ayuda?</h2>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="contact-methods">
+            <mat-card
+              *ngFor="let method of contactMethods"
+              class="contact-card"
+            >
+              <mat-card-content>
+                <mat-icon>{{ method.icon }}</mat-icon>
+                <span>{{ method.text }}</span>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

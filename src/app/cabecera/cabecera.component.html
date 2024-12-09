@@ -1,0 +1,108 @@
+<mat-toolbar class="navbar" color="primary">
+  <div class="navbar-container">
+    <button mat-icon-button (click)="toggleMenu()" *ngIf="isMovil">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="nav-links" [class.hidden]="isMovil && !menuAbierto">
+      <a mat-button routerLink="/portada">Inicio</a>
+      <a mat-button routerLink="/tienda">Tienda</a>
+      <button mat-button routerLink="/premium" class="premium-button">
+        <span>Premium</span>
+      </button>
+      <a mat-button routerLink="/administracion" *ngIf="rol === 'administrador' || rol === 'admin'">
+        Admin
+      </a>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="nav-actions">
+      <button mat-icon-button (click)="desplegarMenuMensajes()">
+        <mat-icon>message</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+        <mat-icon [matBadge]="noleidosContador" 
+                 [matBadgeHidden]="noleidosContador === 0" 
+                 matBadgeColor="warn"
+                 aria-hidden="false"
+                 [attr.aria-label]="'Tienes ' + noleidosContador + ' notificaciones sin leer'">
+          notifications
+        </mat-icon>
+      </button>
+      <button mat-button class="profile-button" [matMenuTriggerFor]="profileMenu">
+        <img [src]="fotoPerfil" alt="Profile" class="profile-avatar">
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-menu #notificationMenu="matMenu" class="notification-menu">
+  <div class="notification-header">
+    <h3>Notificaciones</h3>
+    <div class="notification-actions">
+      <button mat-icon-button color="primary" (click)="marcarTodasComoLeidas()" matTooltip="Marcar todo como leído">
+        <mat-icon>done_all</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="eliminarTodasNotificaciones()" matTooltip="Eliminar todas">
+        <mat-icon>delete_sweep</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="notification-list" *ngIf="notificaciones.length > 0; else noNotifications">
+    <mat-list>
+      <div class="notification-item" *ngFor="let notificacion of notificaciones" [ngClass]="{'unread': !notificacion.leida}">
+        <div class="notification-content">
+          <mat-icon mat-list-icon [ngClass]="{'unread-icon': !notificacion.leida}">{{notificacion.icono}}</mat-icon>
+          <div class="notification-text">
+            <div mat-line class="notification-title">{{notificacion.titulo}}</div>
+            <div mat-line class="notification-message">{{notificacion.contenido}}</div>
+            <div mat-line class="notification-time">
+              <mat-icon class="time-icon">access_time</mat-icon>
+              {{notificacion.fecha | date:'short'}}
+            </div>
+          </div>
+          <div class="notification-actions">
+            <button mat-icon-button class="mark-read-button" (click)="$event.stopPropagation(); marcarComoLeida(notificacion)" *ngIf="!notificacion.leida" matTooltip="Marcar como leída">
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="delete-button" (click)="$event.stopPropagation(); eliminarNotificacion(notificacion.id)" matTooltip="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-list>
+  </div>
+  <ng-template #noNotifications>
+    <div class="no-notifications">
+      <mat-icon class="empty-icon">notifications_off</mat-icon>
+      <p>No tienes notificaciones nuevas</p>
+    </div>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item [routerLink]="['/perfil', usuario]">
+    <mat-icon>person</mat-icon>
+    <span>Perfil</span>
+  </button>
+  <button mat-menu-item routerLink="/inventario">
+    <mat-icon>inventory</mat-icon>
+    <span>Inventario</span>
+  </button>
+  <button mat-menu-item routerLink="/preferencias">
+    <mat-icon>settings</mat-icon>
+    <span>Ajustes</span>
+  </button>
+  <button mat-menu-item routerLink="/ayuda">
+    <mat-icon>help</mat-icon>
+    <span>Soporte</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="pecharSesion()" class="logout-button">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Cerrar Sesión</span>
+  </button>
+</mat-menu>

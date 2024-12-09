@@ -1,0 +1,171 @@
+<div class="contenedor">
+  <!-- Modal sin likes -->
+  <div class="modal" #modalSinLikes>
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">¡No tienes más likes!</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              ¡No tienes más likes! Puedes seguir descubriendo perfiles o
+              suscribirte.
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <button class="card-footer-item" (click)="cerrarModalSinLikes()">
+            Volver
+          </button>
+          <button class="card-footer-item" routerLink="/premium">
+            Suscribirme
+          </button>
+        </footer>
+      </div>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="cerrarModalSinLikes()"
+    ></button>
+  </div>
+
+  <!-- Modal sin super zuums -->
+  <div class="modal" #modalSinSuperZuums>
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">¡No tienes más superZuums!</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              ¡No tienes SuperZuums! Puedes seguir descubriendo perfiles o
+              comprar más SuperZuums.
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <button class="card-footer-item" (click)="cerrarModalSinSuperZuums()">
+            Volver
+          </button>
+          <button class="card-footer-item" routerLink="/tienda">
+            Comprar SuperZuums
+          </button>
+        </footer>
+      </div>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="cerrarModalSinSuperZuums()"
+    ></button>
+  </div>
+
+  <ng-container *ngIf="fichaCompleta; else fichaIncompleta">
+    <ng-container *ngIf="!esMatch; else matchTemplate">
+      <ng-container *ngIf="tarjetaActual | async as tarjeta; else noMasPerfiles">
+        <div class="tarjeta-zuum" [class.girada]="estaGirada" [@deslizar]="deslizarDireccion">
+          <!-- Cara delantera -->
+          <div class="cara cara-delantera">
+            <img [src]="tarjeta.imagenURL" alt="Foto de perfil" class="imagen-fondo">
+            <button class="boton-recarga" (click)="girarTarjeta()">
+              <div class="circulo-icono">
+                <i class="fas fa-sync-alt icono-girar"></i>
+              </div>
+            </button>
+            <div class="info-perfil">
+              <h2>{{tarjeta.nombre}}, {{tarjeta.edad}}</h2>
+              <p>{{tarjeta.ubicacion}}</p>
+              <div class="etiquetas">
+                <span class="etiqueta" *ngFor="let etiqueta of tarjeta.etiquetas">
+                  {{etiqueta}}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cara trasera -->
+          <div class="cara cara-trasera">
+            <button class="boton-recarga" (click)="girarTarjeta()">
+              <div class="circulo-icono">
+                <i class="fas fa-sync-alt icono-girar"></i>
+              </div>
+            </button>
+            <div class="info-detallada">
+              <h3>Sobre mí</h3>
+              <p>{{tarjeta.sobreMi}}</p>
+              <h3>Juegos favoritos</h3>
+              <ul>
+                <li *ngFor="let juego of tarjeta.juegosFavoritos">{{juego}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="contenedor-botones">
+          <button class="boton boton-rechazar" (click)="deslizarIzquierda()">
+            <i class="fas fa-times"></i>
+          </button>
+          <button class="boton boton-super-zuum" (click)="superZuum()">
+            <i class="fas fa-star"></i>
+          </button>
+          <button class="boton boton-me-gusta" (click)="deslizarDerecha()">
+            <i class="fas fa-heart"></i>
+          </button>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #matchTemplate>
+      <div class="tarjeta-alta" [style.background-image]="'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' + foto + ')'">
+        <div class="contenido-tarjeta">
+          <p class="texto-pequeno">¡Es un Zumbido!</p>
+          <p class="texto-grande">¡Has hecho match con {{usuario}}!</p>
+          <div class="contenedor-input">
+            <input type="text" [(ngModel)]="mensaje" placeholder="Envía un mensaje..." class="entrada-mensaje">
+            <button (click)="enviarMensaje()" class="boton-enviar">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+          <button (click)="seguirDescubriendo()" class="boton-seguir">
+            Seguir descubriendo
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #noMasPerfiles>
+      <div class="no-mas-perfiles">
+        <mat-card>
+          <mat-card-content>
+            <h2>¡No hay más perfiles por el momento!</h2>
+            <p>Vuelve más tarde para encontrar nuevas personas.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #fichaIncompleta>
+    <div class="ficha-incompleta">
+      <mat-card>
+        <mat-card-content>
+          <h2>¡Completa tu perfil!</h2>
+          <p>Para poder ver otros perfiles, primero necesitas completar tu información básica.</p>
+          <p>Te faltan los siguientes campos:</p>
+          <ul>
+            <li *ngFor="let campo of camposFaltantes">{{ campo }}</li>
+          </ul>
+          <button mat-raised-button color="primary" [routerLink]="['/perfil', usuarioActual.usuario]">
+            Completar mi perfil
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+</div>

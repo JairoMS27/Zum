@@ -1,0 +1,255 @@
+.header {
+  background: transparent;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 80px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2rem;
+
+    .navbar-start {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      .title {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .help-link {
+        color: white;
+        opacity: 0.9;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .navbar-end {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .language-button {
+        color: white;
+        opacity: 0.9;
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .login-button {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+
+        .button-content {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        &:hover {
+          background-color: white;
+          color: #9b59b6;
+        }
+      }
+    }
+  }
+}
+
+.help-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.hero.is-primary {
+  background: linear-gradient(45deg, #3494e6, #ec6ead);
+  padding: 3rem 1.5rem;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
+.search-field {
+  width: 100%;
+
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      background: white;
+      border-radius: 8px;
+    }
+
+    .mat-form-field-outline {
+      background: white;
+    }
+  }
+}
+
+.category-card {
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .category-icon {
+    font-size: 3rem;
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: 1rem;
+    color: #3494e6;
+  }
+}
+
+.mat-accordion {
+  .mat-expansion-panel {
+    margin-bottom: 1rem;
+    border-radius: 8px !important;
+
+    &:not(.mat-expanded) {
+      &:hover {
+        background: rgba(52, 148, 230, 0.05);
+      }
+    }
+  }
+}
+
+.faq-section {
+  background-color: #f8f9fa;
+  padding: 4rem 0;
+}
+
+.custom-accordion {
+  .custom-panel {
+    background: white;
+    border-radius: 8px !important;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    &:not(.mat-expanded) {
+      &:hover {
+        background: #fafafa;
+      }
+    }
+  }
+
+  .custom-header {
+    padding: 1.5rem;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .mat-expansion-panel-header-title {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+
+      .category-icon {
+        margin-right: 1rem;
+        color: #3494e6;
+      }
+
+      .category-title {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .faq-content {
+    padding: 0 1.5rem 1.5rem;
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .faq-question {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-answer {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+
+  .mat-expansion-panel.mat-expanded {
+    .custom-header {
+      background: rgba(52, 148, 230, 0.05);
+    }
+  }
+}
+
+.contact-section {
+  background: white;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+
+  .contact-card {
+    text-align: center;
+    padding: 1.5rem;
+
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      width: 2rem;
+      margin-bottom: 1rem;
+      color: #3494e6;
+    }
+
+    span {
+      display: block;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .category-card {
+    margin-bottom: 1rem;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+}

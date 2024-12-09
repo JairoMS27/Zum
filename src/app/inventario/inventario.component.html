@@ -1,0 +1,48 @@
+<!-- Añadir el componente cabecera -->
+<app-cabecera (desplegarMenu)="mostrarMenu = !mostrarMenu"></app-cabecera>
+
+<div class="main-content">
+  <div class="gradient-bg">
+    <h1 class="hero-title">Mi Inventario</h1>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Mensaje cuando no hay skins -->
+      <div *ngIf="skins.length === 0" class="empty-inventory">
+        <mat-icon class="empty-icon">inventory_2</mat-icon>
+        <h2>Tu inventario está vacío</h2>
+        <p>¡Compra skins en la tienda para personalizar tu experiencia!</p>
+        <button mat-raised-button color="primary" routerLink="/tienda">
+          Ir a la Tienda
+        </button>
+      </div>
+
+      <!-- Grid de skins -->
+      <div class="inventory-grid" *ngIf="skins.length > 0">
+        <mat-card *ngFor="let skin of skins" class="skin-card" [class.equipped]="skin.equipada">
+          <mat-card-header>
+            <mat-card-title>{{ skin.nombre }}</mat-card-title>
+            <mat-card-subtitle *ngIf="skin.equipada" class="equipped-text">
+              Equipada
+            </mat-card-subtitle>
+          </mat-card-header>
+          
+          <img mat-card-image [src]="skin.imagen" [alt]="skin.nombre">
+          
+          <mat-card-actions align="end">
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="equiparSkin(skin)"
+                    [disabled]="skin.equipada">
+              {{ skin.equipada ? 'Equipada' : 'Equipar' }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Añadir el componente footer -->
+<app-footer></app-footer>

@@ -1,0 +1,146 @@
+<div class="sidenav-container" [class.show]="mostrarMenu">
+  <!-- Vista de lista de chats -->
+  <div *ngIf="!chatActivo" class="lista-chats">
+    <mat-toolbar>
+      <h2>Mensajes</h2>
+    </mat-toolbar>
+
+    <div class="matches-section">
+      <h3 class="section-title">Matches</h3>
+      <div class="matches-grid">
+        <button class="match-button" *ngFor="let match of matches" (click)="abrirChat(match.nombre)">
+          <img [src]="match.foto" [alt]="match.nombre">
+        </button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div class="conversations-section">
+      <h3 class="section-title">Conversaciones</h3>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let usuario of nombresDeUsuarios" (click)="abrirChat(usuario)">
+          <img matListItemAvatar [src]="mensajes[usuario].foto" [alt]="usuario">
+          <div matListItemTitle>{{usuario}}</div>
+          <div matListItemLine class="message-preview">
+            {{mensajes[usuario].mensajes[mensajes[usuario].mensajes.length - 1].texto || ''}}
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </div>
+
+  <!-- Vista del chat -->
+  <div *ngIf="chatActivo" class="chat-view">
+    <mat-toolbar>
+      <button mat-icon-button (click)="volverALista()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="user-info">
+        <img [src]="mensajes[chatActivo].foto" [alt]="chatActivo" class="chat-avatar">
+        <span class="chat-name">{{chatActivo}}</span>
+      </div>
+      
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="options-button">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openBlockModal()">
+          <mat-icon>block</mat-icon>
+          <span>Bloquear usuario</span>
+        </button>
+        <button mat-menu-item (click)="openReportModal()">
+          <mat-icon>report</mat-icon>
+          <span>Reportar</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="cerrarChat()">
+          <mat-icon>close</mat-icon>
+          <span>Cerrar chat</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <div class="chat-messages">
+      <div *ngFor="let mensaje of mensajes[chatActivo].mensajes" 
+           class="message-sent">
+        <div class="message-bubble">
+          <p>{{mensaje.texto}}</p>
+          <span class="message-time">{{mensaje.hora | date:'HH:mm'}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <mat-form-field appearance="outline" class="message-input">
+        <input matInput 
+               placeholder="Escribe un mensaje..." 
+               [(ngModel)]="mensajeNuevo"
+               (keyup.enter)="enviarMensaje()">
+      </mat-form-field>
+      <button mat-fab class="send-button" 
+              color="primary"
+              [disabled]="!mensajeNuevo.trim()"
+              (click)="enviarMensaje()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modales -->
+  <div class="modal-overlay" *ngIf="showBlockModal">
+    <div class="modal-content">
+      <h2>Bloquear usuario</h2>
+      <p>¿Estás seguro de que quieres bloquear a {{chatActivo}}?</p>
+      <div class="modal-actions">
+        <button mat-stroked-button (click)="showBlockModal = false">Cancelar</button>
+        <button mat-raised-button color="warn" (click)="blockUser()">Bloquear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showReportModal">
+    <div class="modal-content report-modal">
+      <h2>Reportar usuario</h2>
+      <p>Selecciona los motivos del reporte:</p>
+      
+      <div class="report-options">
+        <mat-checkbox [(ngModel)]="reportReasons.spam">
+          Spam o contenido comercial no deseado
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="reportReasons.offensive">
+          Contenido ofensivo o inapropiado
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="reportReasons.fake">
+          Perfil falso o suplantación
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="reportReasons.harassment">
+          Acoso o comportamiento abusivo
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="reportReasons.other">
+          Otro motivo
+        </mat-checkbox>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción detallada</mat-label>
+        <textarea matInput
+                  [(ngModel)]="reportDescription"
+                  rows="4"
+                  placeholder="Describe el problema..."></textarea>
+      </mat-form-field>
+      
+      <div class="modal-actions">
+        <button mat-stroked-button (click)="showReportModal = false">
+          Cancelar
+        </button>
+        <button mat-raised-button 
+                color="warn" 
+                [disabled]="!isAnyReasonSelected()"
+                (click)="submitReport()">
+          Enviar reporte
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

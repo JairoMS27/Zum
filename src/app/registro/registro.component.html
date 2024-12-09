@@ -1,0 +1,131 @@
+<div class="animated-background">
+  <div class="register-card">
+    <div class="logo-container">
+      <img src="../../assets/img/logos/Favicon.png" alt="Logo de Zuum" width="64" height="64">
+    </div>
+
+    <h1 class="title">Crear cuenta</h1>
+
+    <form [formGroup]="rexistroForm" (ngSubmit)="completarRegistro()">
+      <!-- Nombre de usuario -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Nombre de usuario</mat-label>
+        <input matInput formControlName="usuario" required>
+        <mat-error *ngIf="rexistroForm.get('usuario')?.errors">
+          {{ getErrorUsuario() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Correo electrónico -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput formControlName="correo" type="email" required>
+        <mat-error *ngIf="rexistroForm.get('correo')?.errors">
+          {{ getErrorCorreo() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Contraseña -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="contrasena" type="password" required>
+        <mat-error *ngIf="rexistroForm.get('contrasena')?.errors">
+          {{ getErrorContrasena() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Confirmar Contraseña -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Confirmar contraseña</mat-label>
+        <input matInput formControlName="contrasenaRepetida" type="password" required>
+        <mat-error *ngIf="rexistroForm.get('contrasenaRepetida')?.errors">
+          {{ getErrorContrasenaRepetida() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="rexistroForm.get('fechaNacimiento')?.errors">
+          {{ getErrorFecha() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Género -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>
+          Género
+        </mat-label>
+        <mat-select formControlName="genero" required>
+          <mat-option value="hombre">
+            <mat-icon>male</mat-icon> Hombre
+          </mat-option>
+          <mat-option value="mujer">
+            <mat-icon>female</mat-icon> Mujer
+          </mat-option>
+          <mat-option value="nobinario">
+            <mat-icon>transgender</mat-icon> No binario
+          </mat-option>
+          <mat-option value="otro">
+            <mat-icon>diversity_3</mat-icon> Otro
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="rexistroForm.get('genero')?.errors">
+          {{ getErrorGenero() }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Orientación Sexual -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>
+          Orientación Sexual
+        </mat-label>
+        <mat-select formControlName="orientacion" required>
+          <mat-option value="heterosexual">
+            <mat-icon>straight</mat-icon> Heterosexual
+          </mat-option>
+          <mat-option value="homosexual">
+            <mat-icon>diversity_1</mat-icon> Homosexual
+          </mat-option>
+          <mat-option value="bisexual">
+            <mat-icon>diversity_2</mat-icon> Bisexual
+          </mat-option>
+          <mat-option value="pansexual">
+            <mat-icon>all_inclusive</mat-icon> Pansexual
+          </mat-option>
+          <mat-option value="asexual">
+            <mat-icon>heart_broken</mat-icon> Asexual
+          </mat-option>
+          <mat-option value="otro">
+            <mat-icon>diversity_3</mat-icon> Otro
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="rexistroForm.get('orientacion')?.errors">
+          {{ getErrorOrientacion() }}
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" class="register-button">
+        Crear cuenta
+      </button>
+    </form>
+
+    <div class="divider">
+      <span>o regístrate con</span>
+    </div>
+
+    <div class="social-buttons">
+      <button class="social-button steam">
+        <i class="fab fa-steam"></i>
+      </button>
+      <button class="social-button google">
+        <i class="fab fa-google"></i>
+      </button>
+      <button class="social-button discord">
+        <i class="fab fa-discord"></i>
+      </button>
+    </div>
+  </div>
+</div>

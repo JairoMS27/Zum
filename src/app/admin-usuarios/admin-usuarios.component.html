@@ -1,0 +1,147 @@
+<section class="section">
+  <!-- Contenido de la página -->
+  <div id="bienvenida" class="box">
+    <!-- Tabla de usuarios -->
+    <h2 class="subtitle">Usuarios</h2>
+    <div class="buttons">
+      <button class="button is-primary" (click)="abrirModal = true">
+        Crear nuevo usuario
+      </button>
+    </div>
+    <table class="table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Contraseña</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.usuario }}</td>
+          <td>{{ usuario.contrasena }}</td>
+          <td>{{ usuario.rol }}</td>
+          <td>
+            <button
+              class="button is-small is-info"
+              (click)="abrirModalEditar(usuario)"
+            >
+              Editar
+            </button>
+            <button
+              class="button is-small is-danger"
+              (click)="eliminarUsuario(usuario)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Modal para crear un nuevo usuario -->
+    <div class="modal" [class.is-active]="abrirModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Crear nuevo usuario</p>
+          <button
+            class="delete"
+            aria-label="close"
+            (click)="abrirModal = false"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <input
+            class="input"
+            type="text"
+            placeholder="Nombre de usuario"
+            #nombreUsuarioInput
+          />
+          <input
+            class="input"
+            type="password"
+            placeholder="Contraseña"
+            #contrasenaInput
+          />
+          <div class="select">
+            <select #rolInput>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button is-success"
+            (click)="
+              crearUsuario(
+                nombreUsuarioInput.value,
+                contrasenaInput.value,
+                rolInput.value
+              );
+              abrirModal = false
+            "
+          >
+            Crear
+          </button>
+          <button class="button" (click)="abrirModal = false">Cancelar</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Modal para editar un usuario -->
+    <div class="modal" [class.is-active]="usuarioEditar">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Editar usuario</p>
+          <button
+            class="delete"
+            aria-label="close"
+            (click)="usuarioEditar = null"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <input
+            class="input"
+            type="text"
+            [ngModel]="usuarioEditar?.usuario"
+            (ngModelChange)="usuarioEditar && (usuarioEditar.usuario = $event)"
+            placeholder="Nombre de usuario"
+          />
+          <input
+            class="input"
+            type="password"
+            [ngModel]="usuarioEditar?.contrasena"
+            (ngModelChange)="
+              usuarioEditar && (usuarioEditar.contrasena = $event)
+            "
+            placeholder="Contraseña"
+          />
+          <div class="select">
+            <select
+              [ngModel]="usuarioEditar?.rol"
+              (ngModelChange)="usuarioEditar && (usuarioEditar.rol = $event)"
+            >
+              <option value="administrador">administrador</option>
+              <option value="normal">User</option>
+            </select>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button is-success"
+            (click)="editarUsuario(); usuarioEditar = null"
+          >
+            Guardar
+          </button>
+          <button class="button" (click)="usuarioEditar = null">
+            Cancelar
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
